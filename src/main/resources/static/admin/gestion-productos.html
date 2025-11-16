@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestión de Productos - InduManage</title>
+    
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="../css/admin/dashboard.css">
+    <link rel="stylesheet" href="../css/admin/gestion-productos.css">
+</head>
+<body>
+    <!-- Sidebar -->
+    <div class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <div class="logo-container">
+                <i class="bi bi-truck-front-fill"></i>
+                <span class="logo-text">InduManage</span>
+            </div>
+        </div>
+        
+        <div class="user-info">
+            <div class="user-avatar">
+                <i class="bi bi-person-circle"></i>
+            </div>
+            <div class="user-details">
+                <span class="user-name" id="productosUserName">Administrador</span>
+                <span class="user-role" id="productosUserRole">Admin</span>
+            </div>
+        </div>
+        
+        <nav class="sidebar-nav">
+            <a href="dashboard.html" class="nav-item">
+                <i class="bi bi-speedometer2"></i>
+                <span>Dashboard</span>
+            </a>
+            
+            <div class="nav-section-title">GESTIÓN DE USUARIOS</div>
+            <a href="dashboard.html#usuarios" class="nav-item">
+                <i class="bi bi-people"></i>
+                <span>Gestión de Usuarios</span>
+            </a>
+            
+            <div class="nav-section-title">INVENTARIO</div>
+            <a href="gestion-productos.html" class="nav-item active">
+                <i class="bi bi-box-seam"></i>
+                <span>Gestión de Productos</span>
+            </a>
+            
+            <div class="nav-section-title">REPORTES</div>
+            <a href="gestion-tickets.html" class="nav-item">
+                <i class="bi bi-ticket-perforated"></i>
+                <span>Gestión de Tickets</span>
+            </a>
+            <a href="dashboard.html#reportes" class="nav-item">
+                <i class="bi bi-file-earmark-bar-graph"></i>
+                <span>Generar Reporte</span>
+            </a>
+            
+            <a href="#" class="nav-item logout-btn" id="logoutBtn">
+                <i class="bi bi-box-arrow-right"></i>
+                <span>Cerrar Sesión</span>
+            </a>
+        </nav>
+    </div>
+    
+    <!-- Main Content -->
+    <div class="main-content">
+        <!-- Navbar -->
+        <nav class="navbar">
+            <button class="sidebar-toggle" id="sidebarToggle">
+                <i class="bi bi-list"></i>
+            </button>
+            
+            <div class="navbar-title">
+                <h4>Gestión de Productos</h4>
+            </div>
+            
+            <div class="navbar-actions">
+                <button class="btn-icon" id="notificationsBtn">
+                    <i class="bi bi-bell"></i>
+                    <span class="notification-badge">3</span>
+                </button>
+                <button class="btn-icon" id="settingsBtn">
+                    <i class="bi bi-gear"></i>
+                </button>
+            </div>
+        </nav>
+        
+        <!-- Content Area -->
+        <div class="content-area">
+            <!-- Header con botón crear -->
+            <div class="section-header">
+                <div>
+                    <h5>Inventario de Productos</h5>
+                    <p class="text-muted">Gestiona maquinaria y repuestos</p>
+                </div>
+                <button class="btn btn-crear" id="btnNuevoProducto">
+                    <i class="bi bi-plus-circle me-2"></i>Nuevo Producto
+                </button>
+            </div>
+            
+            <!-- Filtros -->
+            <div class="card mb-4">
+                <div class="card-body">
+                    <div class="row g-3">
+                        <div class="col-md-4">
+                            <input type="text" class="form-control" id="buscarProducto" placeholder="Buscar por nombre, código...">
+                        </div>
+                        <div class="col-md-2">
+                            <select class="form-select" id="filtroTipo">
+                                <option value="">Todos los tipos</option>
+                                <option value="MAQUINARIA">Maquinaria</option>
+                                <option value="REPUESTO">Repuesto</option>
+                            </select>
+                        </div>
+                        <div class="col-md-2">
+                            <select class="form-select" id="filtroCategoria">
+                                <option value="">Todas las categorías</option>
+                            </select>
+                        </div>
+                        <div class="col-md-2">
+                            <select class="form-select" id="filtroEstado">
+                                <option value="">Todos los estados</option>
+                                <option value="FUNCIONANDO">Funcionando</option>
+                                <option value="MANTENIMIENTO">Mantenimiento</option>
+                                <option value="REVISION">Revisión</option>
+                                <option value="BAJA">Baja</option>
+                            </select>
+                        </div>
+                        <div class="col-md-2">
+                            <select class="form-select" id="filtroActivo">
+                                <option value="true">Activos</option>
+                                <option value="false">Inactivos</option>
+                                <option value="">Todos</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Tabla de Productos -->
+            <div class="card">
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table table-hover" id="tablaProductos">
+                            <thead>
+                                <tr>
+                                    <th>Código</th>
+                                    <th>Nombre</th>
+                                    <th>Tipo</th>
+                                    <th>Categoría</th>
+                                    <th>Ubicación</th>
+                                    <th>Estado/Stock</th>
+                                    <th>Fecha Adquisición</th>
+                                    <th>Acciones</th>
+                                </tr>
+                            </thead>
+                            <tbody id="tbodyProductos">
+                                <!-- Se llena dinámicamente -->
+                            </tbody>
+                        </table>
+                    </div>
+                    
+                    <!-- Estado vacío -->
+                    <div id="emptyState" class="empty-state d-none">
+                        <i class="bi bi-inbox"></i>
+                        <p>No hay productos registrados</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Modal Crear/Editar Producto -->
+    <div class="modal fade" id="modalProducto" tabindex="-1">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modalProductoTitulo">Nuevo Producto</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="formProducto">
+                        <input type="hidden" id="productoId">
+                        
+                        <div class="row g-3">
+                            <!-- Código -->
+                            <div class="col-md-4">
+                                <label class="form-label">Código <span class="text-danger">*</span></label>
+                                <input type="text" class="form-control" id="productoCodigo" required>
+                            </div>
+                            
+                            <!-- Tipo -->
+                            <div class="col-md-4">
+                                <label class="form-label">Tipo <span class="text-danger">*</span></label>
+                                <select class="form-select" id="productoTipo" required>
+                                    <option value="">Seleccionar...</option>
+                                    <option value="MAQUINARIA">Maquinaria</option>
+                                    <option value="REPUESTO">Repuesto</option>
+                                </select>
+                            </div>
+                            
+                            <!-- Tipo Maquinaria (solo si tipo=MAQUINARIA) -->
+                            <div class="col-md-4" id="grupoTipoMaquinaria" style="display: none;">
+                                <label class="form-label">Tamaño</label>
+                                <select class="form-select" id="productoTipoMaquinaria">
+                                    <option value="">Seleccionar...</option>
+                                    <option value="GRANDE">Grande</option>
+                                    <option value="MEDIANA">Mediana</option>
+                                    <option value="PEQUEÑA">Pequeña</option>
+                                </select>
+                            </div>
+                            
+                            <!-- Nombre con autocompletado -->
+                            <div class="col-md-6">
+                                <label class="form-label">Nombre <span class="text-danger">*</span></label>
+                                <input type="text" class="form-control" id="productoNombre" list="nombresExistentes" required>
+                                <datalist id="nombresExistentes"></datalist>
+                                <small class="text-muted">Escribe para ver sugerencias</small>
+                            </div>
+                            
+                            <!-- Categoría con autocompletado -->
+                            <div class="col-md-6">
+                                <label class="form-label">Categoría <span class="text-danger">*</span></label>
+                                <input type="text" class="form-control" id="productoCategoria" list="categoriasExistentes" required>
+                                <datalist id="categoriasExistentes"></datalist>
+                                <small class="text-muted">Escribe para ver sugerencias</small>
+                            </div>
+                            
+                            <!-- Ubicación con autocompletado -->
+                            <div class="col-md-6">
+                                <label class="form-label">Ubicación <span class="text-danger">*</span></label>
+                                <input type="text" class="form-control" id="productoUbicacion" list="ubicacionesExistentes" required>
+                                <datalist id="ubicacionesExistentes"></datalist>
+                                <small class="text-muted">Escribe para ver sugerencias</small>
+                            </div>
+                            
+                            <!-- Estado (solo si tipo=MAQUINARIA) -->
+                            <div class="col-md-6" id="grupoEstado" style="display: none;">
+                                <label class="form-label">Estado</label>
+                                <select class="form-select" id="productoEstado">
+                                    <option value="">Seleccionar...</option>
+                                    <option value="FUNCIONANDO">Funcionando</option>
+                                    <option value="MANTENIMIENTO">Mantenimiento</option>
+                                    <option value="REVISION">Revisión</option>
+                                    <option value="BAJA">Baja</option>
+                                </select>
+                            </div>
+                            
+                            <!-- Stock (solo si tipo=REPUESTO) -->
+                            <div class="col-md-6" id="grupoStock" style="display: none;">
+                                <label class="form-label">Stock</label>
+                                <input type="number" class="form-control" id="productoStock" min="0">
+                            </div>
+                            
+                            <!-- Fecha de Adquisición -->
+                            <div class="col-md-6">
+                                <label class="form-label">Fecha de Adquisición</label>
+                                <input type="date" class="form-control" id="productoFechaAdquisicion">
+                            </div>
+                            
+                            <!-- Descripción -->
+                            <div class="col-12">
+                                <label class="form-label">Descripción</label>
+                                <textarea class="form-control" id="productoDescripcion" rows="2"></textarea>
+                            </div>
+                            
+                            <!-- Observaciones -->
+                            <div class="col-12">
+                                <label class="form-label">Observaciones</label>
+                                <textarea class="form-control" id="productoObservaciones" rows="2"></textarea>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                    <button type="button" class="btn btn-primary" id="btnGuardarProducto">Guardar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Modal Confirmar Eliminación -->
+    <div class="modal fade" id="modalEliminar" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Confirmar Eliminación</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <p>¿Está seguro que desea eliminar el producto <strong id="nombreProductoEliminar"></strong>?</p>
+                    <p class="text-muted">Esta acción desactivará el producto del inventario.</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                    <button type="button" class="btn btn-danger" id="btnConfirmarEliminar">Eliminar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Bootstrap 5 JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- Custom JS -->
+    <script src="../js/admin/gestion-productos.js"></script>
+</body>
+</html>

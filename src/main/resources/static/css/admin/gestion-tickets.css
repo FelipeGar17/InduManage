@@ -1,0 +1,298 @@
+/* ===== Estadísticas Cards ===== */
+.stat-card {
+    background: white;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    transition: transform 0.2s;
+}
+
+.stat-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+.stat-icon {
+    width: 60px;
+    height: 60px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+}
+
+.stat-pendiente .stat-icon {
+    background: #fff3cd;
+    color: #856404;
+}
+
+.stat-revision .stat-icon {
+    background: #cfe2ff;
+    color: #084298;
+}
+
+.stat-resuelto .stat-icon {
+    background: #d1e7dd;
+    color: #0f5132;
+}
+
+.stat-cerrado .stat-icon {
+    background: #e2e3e5;
+    color: #41464b;
+}
+
+.stat-details h3 {
+    margin: 0;
+    font-size: 28px;
+    font-weight: 700;
+    color: #000;
+}
+
+.stat-details p {
+    margin: 0;
+    color: #666;
+    font-size: 14px;
+}
+
+/* ===== Badges para Estados de Ticket ===== */
+.badge-pendiente {
+    background: #fff3cd;
+    color: #856404;
+    padding: 4px 12px;
+    border-radius: 12px;
+    font-size: 12px;
+    font-weight: 600;
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.badge-en-revision {
+    background: #cfe2ff;
+    color: #084298;
+    padding: 4px 12px;
+    border-radius: 12px;
+    font-size: 12px;
+    font-weight: 600;
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.badge-resuelto {
+    background: #d1e7dd;
+    color: #0f5132;
+    padding: 4px 12px;
+    border-radius: 12px;
+    font-size: 12px;
+    font-weight: 600;
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.badge-cerrado {
+    background: #e2e3e5;
+    color: #41464b;
+    padding: 4px 12px;
+    border-radius: 12px;
+    font-size: 12px;
+    font-weight: 600;
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+}
+
+/* ===== Badges para Tipos de Reporte ===== */
+.badge-falla {
+    background: #f8d7da;
+    color: #842029;
+    padding: 4px 10px;
+    border-radius: 12px;
+    font-size: 11px;
+    font-weight: 600;
+}
+
+.badge-mantenimiento {
+    background: #fff3cd;
+    color: #856404;
+    padding: 4px 10px;
+    border-radius: 12px;
+    font-size: 11px;
+    font-weight: 600;
+}
+
+.badge-observacion {
+    background: #cfe2ff;
+    color: #084298;
+    padding: 4px 10px;
+    border-radius: 12px;
+    font-size: 11px;
+    font-weight: 600;
+}
+
+.badge-solicitud {
+    background: #e7d4f8;
+    color: #4a1a6a;
+    padding: 4px 10px;
+    border-radius: 12px;
+    font-size: 11px;
+    font-weight: 600;
+}
+
+/* ===== Badge Respuesta ===== */
+.badge-con-respuesta {
+    background: #d1e7dd;
+    color: #0f5132;
+    padding: 4px 10px;
+    border-radius: 12px;
+    font-size: 11px;
+    font-weight: 600;
+}
+
+.badge-sin-respuesta {
+    background: #e2e3e5;
+    color: #41464b;
+    padding: 4px 10px;
+    border-radius: 12px;
+    font-size: 11px;
+    font-weight: 600;
+}
+
+/* ===== Tabla ===== */
+#tablaTickets thead {
+    background: #f8f9fa;
+    color: #000;
+    font-weight: 600;
+    font-size: 13px;
+    text-transform: uppercase;
+}
+
+#tablaTickets tbody tr {
+    transition: background 0.2s;
+}
+
+#tablaTickets tbody tr:hover {
+    background: #f8f9fa;
+}
+
+#tablaTickets td {
+    vertical-align: middle;
+    padding: 12px 8px;
+    font-size: 14px;
+}
+
+/* ===== Botones de Acción ===== */
+.btn-view {
+    background: #e3f2fd;
+    color: #0d47a1;
+    border: none;
+    padding: 6px 12px;
+    border-radius: 6px;
+    font-size: 13px;
+    cursor: pointer;
+    transition: all 0.2s;
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.btn-view:hover {
+    background: #bbdefb;
+    color: #0d47a1;
+    transform: translateY(-1px);
+}
+
+.btn-manage {
+    background: #fff3cd;
+    color: #856404;
+    border: none;
+    padding: 6px 12px;
+    border-radius: 6px;
+    font-size: 13px;
+    cursor: pointer;
+    transition: all 0.2s;
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.btn-manage:hover {
+    background: #ffe69c;
+    color: #856404;
+    transform: translateY(-1px);
+}
+
+.btn-delete {
+    background: #f8d7da;
+    color: #842029;
+    border: none;
+    padding: 6px 12px;
+    border-radius: 6px;
+    font-size: 13px;
+    cursor: pointer;
+    transition: all 0.2s;
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.btn-delete:hover {
+    background: #f1aeb5;
+    color: #842029;
+    transform: translateY(-1px);
+}
+
+/* ===== Empty State ===== */
+.empty-state {
+    text-align: center;
+    padding: 60px 20px;
+    color: #999;
+}
+
+.empty-state i {
+    font-size: 64px;
+    margin-bottom: 16px;
+    opacity: 0.5;
+}
+
+.empty-state p {
+    font-size: 18px;
+    margin: 0;
+}
+
+/* ===== Modal ===== */
+.ticket-info {
+    background: #f8f9fa;
+    border-radius: 8px;
+    padding: 20px;
+}
+
+.ticket-descripcion {
+    background: white;
+    padding: 15px;
+    border-radius: 6px;
+    border: 1px solid #dee2e6;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+}
+
+/* ===== Responsive ===== */
+@media (max-width: 768px) {
+    .stat-card {
+        margin-bottom: 10px;
+    }
+    
+    .table-responsive {
+        font-size: 12px;
+    }
+    
+    .btn-view, .btn-manage, .btn-delete {
+        padding: 4px 8px;
+        font-size: 11px;
+    }
+}

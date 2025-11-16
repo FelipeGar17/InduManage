@@ -1,0 +1,481 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    height: 100vh;
+    overflow: hidden;
+}
+
+.login-container {
+    position: relative;
+    height: 100vh;
+    display: flex;
+    align-items: stretch;
+    justify-content: space-between;
+    /* Imagen de fondo con la retro excavadora y volqueta */
+    background-image: url('https://i.pinimg.com/originals/d4/44/2d/d4442d694c2d9c48d0fa1d5e73af00b3.jpg');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+}
+
+/* Tarjeta de información a la izquierda */
+.info-card {
+    position: relative;
+    width: 500px;
+    max-width: 500px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 50px 40px;
+    margin: 80px 0 80px 120px;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(15px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 30px;
+    animation: slideInLeft 0.6s ease-out;
+}
+
+@keyframes slideInLeft {
+    from {
+        opacity: 0;
+        transform: translateX(-50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+.info-content {
+    text-align: center;
+    color: white;
+}
+
+.logo-circle-info {
+    width: 120px;
+    height: 120px;
+    margin: 0 auto 30px;
+    background: linear-gradient(135deg, #ff9800 0%, #ff6b35 100%);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 10px 30px rgba(255, 152, 0, 0.5);
+    border: 5px solid rgba(255, 255, 255, 0.3);
+}
+
+.logo-circle-info i {
+    font-size: 60px;
+    color: white;
+}
+
+.info-title {
+    font-size: 3rem;
+    font-weight: bold;
+    margin-bottom: 15px;
+    text-shadow: 3px 3px 10px rgba(0, 0, 0, 0.7);
+    color: white;
+}
+
+.info-description {
+    font-size: 1.1rem;
+    margin-bottom: 30px;
+    text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.6);
+    color: rgba(255, 255, 255, 0.95);
+    font-weight: 500;
+}
+
+.welcome-message {
+    background: rgba(255, 255, 255, 0.15);
+    padding: 20px;
+    border-radius: 15px;
+    margin-bottom: 30px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.welcome-title {
+    font-size: 1.4rem;
+    font-weight: 600;
+    margin-bottom: 10px;
+    color: #ffffff;
+    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.8);
+}
+
+.welcome-text {
+    font-size: 0.95rem;
+    line-height: 1.6;
+    margin: 0;
+    color: rgba(255, 255, 255, 0.95);
+    text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.5);
+}
+
+.info-features {
+    text-align: left;
+    display: inline-block;
+    width: 100%;
+    margin-bottom: 25px;
+}
+
+.feature-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+    font-size: 1rem;
+    text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.5);
+}
+
+.feature-item i {
+    color: #ff9800;
+    font-size: 1.4rem;
+    margin-right: 12px;
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.5));
+}
+
+.trust-badge {
+    background: rgba(76, 175, 80, 0.2);
+    border: 2px solid rgba(76, 175, 80, 0.5);
+    padding: 12px 20px;
+    border-radius: 25px;
+    display: inline-flex;
+    align-items: center;
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: #4caf50;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+    margin-top: 10px;
+}
+
+.trust-badge i {
+    font-size: 1.2rem;
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.5));
+}
+
+/* Tarjeta de login a la derecha con efecto glassmorphism */
+.glass-card {
+    position: relative;
+    width: 550px;
+    min-height: 100vh;
+    padding: 40px 50px;
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(25px);
+    border-left: 1px solid rgba(255, 255, 255, 0.2);
+    box-shadow: -10px 0 40px rgba(0, 0, 0, 0.3);
+    animation: slideInRight 0.6s ease-out;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+@keyframes slideInRight {
+    from {
+        opacity: 0;
+        transform: translateX(50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+/* Logo/Ícono circular superior */
+.logo-circle {
+    width: 90px;
+    height: 90px;
+    margin: 0 auto 25px;
+    background: linear-gradient(135deg, #ff9800 0%, #ff6b35 100%);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 8px 20px rgba(255, 152, 0, 0.5);
+    border: 4px solid rgba(255, 255, 255, 0.3);
+}
+
+.logo-circle i {
+    font-size: 45px;
+    color: white;
+}
+
+/* Mensaje de bienvenida en login */
+.login-welcome {
+    text-align: center;
+    padding-bottom: 20px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+/* Títulos */
+.card-title {
+    color: white;
+    font-weight: bold;
+    font-size: 1.8rem;
+    margin-bottom: 10px;
+    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.5);
+    transition: all 0.3s ease;
+}
+
+.card-subtitle {
+    color: rgba(255, 255, 255, 0.9);
+    font-size: 0.9rem;
+    line-height: 1.5;
+    text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.5);
+}
+
+/* Contenedor de formularios */
+.form-container {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+}
+
+/* Estilos para los formularios */
+.auth-form {
+    display: none;
+    animation: fadeInForm 0.4s ease-in;
+}
+
+.auth-form.active {
+    display: block;
+}
+
+@keyframes fadeInForm {
+    from {
+        opacity: 0;
+        transform: translateX(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+/* Labels y inputs */
+.form-label {
+    color: white;
+    font-weight: 600;
+    margin-bottom: 8px;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+}
+
+.form-control {
+    background: rgba(255, 255, 255, 0.9);
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    border-radius: 10px;
+    padding: 12px 15px;
+    transition: all 0.3s;
+    color: #333;
+}
+
+.form-control::placeholder {
+    color: rgba(0, 0, 0, 0.4);
+}
+
+.form-control:focus {
+    background: rgba(255, 255, 255, 1);
+    border-color: #ff9800;
+    box-shadow: 0 0 0 0.2rem rgba(255, 152, 0, 0.3);
+    outline: none;
+}
+
+.input-group .btn-outline-secondary {
+    background: rgba(255, 255, 255, 0.9);
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    border-left: none;
+    color: #666;
+}
+
+.input-group .btn-outline-secondary:hover {
+    background: rgba(255, 255, 255, 1);
+    color: #ff9800;
+}
+
+/* Checkbox */
+.form-check-label {
+    color: white;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+}
+
+.form-check-input:checked {
+    background-color: #ff9800;
+    border-color: #ff9800;
+}
+
+/* Botones principales */
+.btn-primary {
+    background: linear-gradient(135deg, #ff9800 0%, #ff6b35 100%);
+    border: none;
+    border-radius: 10px;
+    padding: 12px;
+    font-weight: 600;
+    transition: all 0.3s;
+    box-shadow: 0 4px 15px rgba(255, 152, 0, 0.4);
+}
+
+.btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(255, 152, 0, 0.6);
+    background: linear-gradient(135deg, #ff6b35 0%, #ff9800 100%);
+}
+
+.btn-primary:active {
+    transform: translateY(0);
+}
+
+/* Enlaces para cambiar entre login y registro */
+.toggle-link {
+    color: white;
+    text-decoration: none;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+    transition: all 0.3s;
+    display: inline-block;
+}
+
+.toggle-link:hover {
+    color: #ff9800;
+    transform: scale(1.05);
+}
+
+.toggle-link strong {
+    color: #ff9800;
+}
+
+/* Alertas */
+.alert {
+    background: rgba(220, 53, 69, 0.95);
+    border: none;
+    border-radius: 10px;
+    color: white;
+    animation: slideDown 0.3s ease-in;
+}
+
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.alert .btn-close {
+    filter: brightness(0) invert(1);
+}
+
+/* Responsive */
+@media (max-width: 992px) {
+    .login-container {
+        flex-direction: column;
+    }
+    
+    .info-card {
+        width: 100%;
+        max-width: 100%;
+        min-height: 40vh;
+        border-right: none;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+        padding: 40px 30px;
+    }
+    
+    .logo-circle-info {
+        width: 100px;
+        height: 100px;
+        margin-bottom: 20px;
+    }
+    
+    .logo-circle-info i {
+        font-size: 50px;
+    }
+    
+    .info-title {
+        font-size: 2.5rem;
+    }
+    
+    .info-description {
+        font-size: 1rem;
+        margin-bottom: 30px;
+    }
+    
+    .feature-item {
+        font-size: 1rem;
+        margin-bottom: 15px;
+    }
+    
+    .glass-card {
+        width: 100%;
+        min-height: 60vh;
+        padding: 40px 30px;
+        border-left: none;
+    }
+}
+
+@media (max-width: 576px) {
+    .info-card {
+        padding: 30px 20px;
+        min-height: 35vh;
+    }
+    
+    .logo-circle-info {
+        width: 80px;
+        height: 80px;
+    }
+    
+    .logo-circle-info i {
+        font-size: 40px;
+    }
+    
+    .info-title {
+        font-size: 2rem;
+    }
+    
+    .info-description {
+        font-size: 0.9rem;
+    }
+    
+    .feature-item {
+        font-size: 0.9rem;
+    }
+    
+    .glass-card {
+        padding: 30px 20px;
+    }
+    
+    .logo-circle {
+        width: 70px;
+        height: 70px;
+    }
+    
+    .logo-circle i {
+        font-size: 35px;
+    }
+    
+    .card-title {
+        font-size: 1.5rem;
+    }
+    
+    .card-subtitle {
+        font-size: 0.85rem;
+    }
+    
+    .form-control {
+        padding: 10px 12px;
+    }
+}
+
+/* Animación para botón de éxito */
+.btn-success {
+    background: linear-gradient(135deg, #4caf50 0%, #66bb6a 100%);
+    animation: pulse 0.5s ease-in-out;
+}
+
+@keyframes pulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+}

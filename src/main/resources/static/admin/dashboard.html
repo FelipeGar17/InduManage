@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard Administrador - InduManage</title>
+    
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="../css/admin/dashboard.css">
+</head>
+<body>
+    <!-- Sidebar -->
+    <div class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <div class="logo-container">
+                <i class="bi bi-truck-front-fill"></i>
+                <span class="logo-text">InduManage</span>
+            </div>
+        </div>
+        
+        <div class="user-info">
+            <div class="user-avatar">
+                <i class="bi bi-person-circle"></i>
+            </div>
+            <div class="user-details">
+                <span class="user-name" id="adminUserName">Administrador</span>
+                <span class="user-role" id="adminUserRole">Admin</span>
+            </div>
+        </div>
+        
+        <nav class="sidebar-nav">
+            <a href="#dashboard" class="nav-item active" data-section="dashboard">
+                <i class="bi bi-speedometer2"></i>
+                <span>Dashboard</span>
+            </a>
+            
+            <div class="nav-section-title">GESTIÓN DE USUARIOS</div>
+            <a href="#usuarios" class="nav-item" data-section="usuarios">
+                <i class="bi bi-people"></i>
+                <span>Gestión de Usuarios</span>
+            </a>
+            
+            <div class="nav-section-title">INVENTARIO</div>
+            <a href="gestion-productos.html" class="nav-item">
+                <i class="bi bi-box-seam"></i>
+                <span>Gestión de Productos</span>
+            </a>
+            
+            <div class="nav-section-title">REPORTES</div>
+            <a href="gestion-tickets.html" class="nav-item">
+                <i class="bi bi-ticket-perforated"></i>
+                <span>Gestión de Tickets</span>
+            </a>
+            <a href="#reportes" class="nav-item" data-section="reportes">
+                <i class="bi bi-file-earmark-bar-graph"></i>
+                <span>Generar Reporte</span>
+            </a>
+            
+            <a href="#" class="nav-item logout-btn" id="logoutBtn">
+                <i class="bi bi-box-arrow-right"></i>
+                <span>Cerrar Sesión</span>
+            </a>
+        </nav>
+    </div>
+    
+    <!-- Main Content -->
+    <div class="main-content">
+        <!-- Navbar -->
+        <nav class="navbar">
+            <button class="sidebar-toggle" id="sidebarToggle">
+                <i class="bi bi-list"></i>
+            </button>
+            
+            <div class="navbar-title">
+                <h4 id="pageTitle">Dashboard Principal</h4>
+            </div>
+            
+            <div class="navbar-actions">
+                <button class="btn-icon" id="notificationsBtn">
+                    <i class="bi bi-bell"></i>
+                    <span class="notification-badge">3</span>
+                </button>
+                <button class="btn-icon" id="settingsBtn">
+                    <i class="bi bi-gear"></i>
+                </button>
+            </div>
+        </nav>
+        
+        <!-- Content Area -->
+        <div class="content-area">
+            <!-- Dashboard Section -->
+            <div class="content-section active" id="section-dashboard">
+                <div class="welcome-banner">
+                    <div>
+                        <h2>Panel de Administración</h2>
+                        <p>Sistema de gestión InduManage</p>
+                    </div>
+                </div>
+                
+                <!-- Información de la Empresa -->
+                <div class="row g-4">
+                    <div class="col-lg-4">
+                        <div class="card">
+                            <div class="card-header bg-dark text-white">
+                                <h5 class="mb-0"><i class="bi bi-building me-2"></i>Acerca de InduManage</h5>
+                            </div>
+                            <div class="card-body">
+                                <p class="text-muted">Líder en soluciones industriales con más de 15 años de experiencia en el sector de maquinaria pesada.</p>
+                                <div class="company-stats mt-3">
+                                    <div class="company-stat-item">
+                                        <span class="stat-number">15+</span>
+                                        <span class="stat-label">Años de experiencia</span>
+                                    </div>
+                                    <div class="company-stat-item">
+                                        <span class="stat-number">2,500+</span>
+                                        <span class="stat-label">Productos</span>
+                                    </div>
+                                    <div class="company-stat-item">
+                                        <span class="stat-number">24/7</span>
+                                        <span class="stat-label">Soporte</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="col-lg-4">
+                        <div class="card">
+                            <div class="card-header bg-dark text-white">
+                                <h5 class="mb-0"><i class="bi bi-gear-fill me-2"></i>Servicios Principales</h5>
+                            </div>
+                            <div class="card-body">
+                                <ul class="services-list">
+                                    <li>
+                                        <i class="bi bi-check-circle text-warning me-2"></i>
+                                        <span>Alquiler de maquinaria pesada</span>
+                                    </li>
+                                    <li>
+                                        <i class="bi bi-check-circle text-warning me-2"></i>
+                                        <span>Venta de repuestos originales</span>
+                                    </li>
+                                    <li>
+                                        <i class="bi bi-check-circle text-warning me-2"></i>
+                                        <span>Mantenimiento especializado</span>
+                                    </li>
+                                    <li>
+                                        <i class="bi bi-check-circle text-warning me-2"></i>
+                                        <span>Asesoría técnica</span>
+                                    </li>
+                                    <li>
+                                        <i class="bi bi-check-circle text-warning me-2"></i>
+                                        <span>Servicio de emergencia</span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="col-lg-4">
+                        <div class="card">
+                            <div class="card-header bg-dark text-white">
+                                <h5 class="mb-0"><i class="bi bi-activity me-2"></i>Actividad Reciente</h5>
+                            </div>
+                            <div class="card-body">
+                                <div class="activity-list" id="activityList">
+                                    <div class="activity-item">
+                                        <div class="activity-icon">
+                                            <i class="bi bi-person-plus"></i>
+                                        </div>
+                                        <div class="activity-details">
+                                            <p class="mb-0">Nuevo usuario registrado</p>
+                                            <small class="text-muted">Hace 2 horas</small>
+                                        </div>
+                                    </div>
+                                    <div class="activity-item">
+                                        <div class="activity-icon">
+                                            <i class="bi bi-box"></i>
+                                        </div>
+                                        <div class="activity-details">
+                                            <p class="mb-0">Producto agregado</p>
+                                            <small class="text-muted">Hace 4 horas</small>
+                                        </div>
+                                    </div>
+                                    <div class="activity-item">
+                                        <div class="activity-icon">
+                                            <i class="bi bi-ticket"></i>
+                                        </div>
+                                        <div class="activity-details">
+                                            <p class="mb-0">Ticket resuelto</p>
+                                            <small class="text-muted">Hace 1 día</small>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Usuarios Section -->
+            <div class="content-section" id="section-usuarios">
+                <div class="card">
+                    <div class="card-header bg-dark text-white d-flex justify-content-between align-items-center">
+                        <h5 class="mb-0"><i class="bi bi-people me-2"></i>Gestión de Usuarios</h5>
+                        <button class="btn btn-warning btn-sm" id="btnNuevoUsuario">
+                            <i class="bi bi-person-plus me-1"></i>Nuevo Usuario
+                        </button>
+                    </div>
+                    <div class="card-body">
+                        <!-- Filtros -->
+                        <div class="row g-3 mb-3">
+                            <div class="col-md-4">
+                                <input type="text" class="form-control" id="searchUsuarios" placeholder="Buscar por nombre o correo...">
+                            </div>
+                            <div class="col-md-3">
+                                <select class="form-select" id="filterRol">
+                                    <option value="">Todos los roles</option>
+                                    <option value="OPERARIO">Operario</option>
+                                    <option value="CLIENTE">Cliente</option>
+                                </select>
+                            </div>
+                            <div class="col-md-3">
+                                <select class="form-select" id="filterEstado">
+                                    <option value="">Todos los estados</option>
+                                    <option value="true">Activos</option>
+                                    <option value="false">Inactivos</option>
+                                </select>
+                            </div>
+                            <div class="col-md-2">
+                                <button class="btn btn-secondary w-100" id="btnLimpiarFiltros">
+                                    <i class="bi bi-x-circle me-1"></i>Limpiar
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <!-- Tabla -->
+                        <div class="table-responsive">
+                            <table class="table table-hover">
+                                <thead>
+                                    <tr>
+                                        <th>Nombre</th>
+                                        <th>Correo</th>
+                                        <th>Teléfono</th>
+                                        <th>Rol</th>
+                                        <th>Estado</th>
+                                        <th>Fecha Creación</th>
+                                        <th class="text-center">Acciones</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="usuariosTableBody">
+                                    <tr>
+                                        <td colspan="7" class="text-center py-4">
+                                            <div class="spinner-border text-warning" role="status">
+                                                <span class="visually-hidden">Cargando...</span>
+                                            </div>
+                                            <p class="mt-2 text-muted">Cargando usuarios...</p>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="content-section" id="section-inventario">
+                <div class="card">
+                    <div class="card-header">
+                        <h5><i class="bi bi-box-seam me-2"></i>Inventario</h5>
+                    </div>
+                    <div class="card-body">
+                        <p class="text-muted">Listado de productos (próximamente)</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Modal Formulario Usuario -->
+    <div class="modal fade" id="modalUsuario" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header bg-dark text-white">
+                    <h5 class="modal-title" id="modalUsuarioTitle">
+                        <i class="bi bi-person-plus me-2"></i>Nuevo Usuario
+                    </h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="formUsuario">
+                        <input type="hidden" id="usuarioId">
+                        
+                        <div class="mb-3">
+                            <label for="nombre" class="form-label">Nombre Completo <span class="text-danger">*</span></label>
+                            <input type="text" class="form-control" id="nombre" required>
+                            <div class="invalid-feedback">Por favor ingrese el nombre completo.</div>
+                        </div>
+                        
+                        <div class="mb-3">
+                            <label for="correo" class="form-label">Correo Electrónico <span class="text-danger">*</span></label>
+                            <input type="email" class="form-control" id="correo" required>
+                            <div class="invalid-feedback">Por favor ingrese un correo válido.</div>
+                        </div>
+                        
+                        <div class="mb-3" id="passwordGroup">
+                            <label for="password" class="form-label">Contraseña <span class="text-danger">*</span></label>
+                            <div class="input-group">
+                                <input type="password" class="form-control" id="password" required>
+                                <button class="btn btn-outline-secondary" type="button" id="togglePassword">
+                                    <i class="bi bi-eye"></i>
+                                </button>
+                            </div>
+                            <small class="text-muted">Mínimo 6 caracteres</small>
+                            <div class="invalid-feedback">La contraseña debe tener al menos 6 caracteres.</div>
+                        </div>
+                        
+                        <div class="mb-3">
+                            <label for="telefono" class="form-label">Teléfono</label>
+                            <input type="tel" class="form-control" id="telefono" placeholder="Ej: +593 999999999">
+                        </div>
+                        
+                        <div class="mb-3">
+                            <label for="direccion" class="form-label">Dirección</label>
+                            <textarea class="form-control" id="direccion" rows="2"></textarea>
+                        </div>
+                        
+                        <div class="mb-3">
+                            <label for="rol" class="form-label">Rol <span class="text-danger">*</span></label>
+                            <select class="form-select" id="rol" required>
+                                <option value="">Seleccione un rol</option>
+                                <option value="OPERARIO">Operario</option>
+                                <option value="CLIENTE">Cliente</option>
+                            </select>
+                            <div class="invalid-feedback">Por favor seleccione un rol.</div>
+                        </div>
+                        
+                        <div class="mb-3" id="estadoGroup">
+                            <label for="activo" class="form-label">Estado</label>
+                            <select class="form-select" id="activo">
+                                <option value="true">Activo</option>
+                                <option value="false">Inactivo</option>
+                            </select>
+                        </div>
+
+                        <div class="alert alert-danger d-none" id="errorAlert" role="alert">
+                            <i class="bi bi-exclamation-triangle me-2"></i>
+                            <span id="errorMessage"></span>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                        <i class="bi bi-x-circle me-1"></i>Cancelar
+                    </button>
+                    <button type="submit" form="formUsuario" class="btn btn-warning" id="btnGuardarUsuario">
+                        <i class="bi bi-save me-1"></i>Guardar Usuario
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Confirmación Eliminar -->
+    <div class="modal fade" id="modalEliminar" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered modal-sm">
+            <div class="modal-content">
+                <div class="modal-header bg-danger text-white">
+                    <h5 class="modal-title">
+                        <i class="bi bi-exclamation-triangle me-2"></i>Confirmar Acción
+                    </h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body text-center">
+                    <i class="bi bi-person-x display-1 text-danger mb-3"></i>
+                    <p class="mb-0">¿Está seguro de desactivar este usuario?</p>
+                    <p class="text-muted mb-0"><small id="usuarioNombreEliminar"></small></p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal">Cancelar</button>
+                    <button type="button" class="btn btn-danger btn-sm" id="btnConfirmarEliminar">
+                        <i class="bi bi-trash me-1"></i>Desactivar
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap 5 JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- Custom JS -->
+    <script src="../js/admin/dashboard.js"></script>
+</body>
+</html>

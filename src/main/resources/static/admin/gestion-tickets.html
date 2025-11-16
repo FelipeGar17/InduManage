@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestión de Tickets - InduManage</title>
+    
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="../css/admin/dashboard.css">
+    <link rel="stylesheet" href="../css/admin/gestion-tickets.css">
+</head>
+<body>
+    <!-- Sidebar -->
+    <div class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <div class="logo-container">
+                <i class="bi bi-truck-front-fill"></i>
+                <span class="logo-text">InduManage</span>
+            </div>
+        </div>
+        
+        <div class="user-info">
+            <div class="user-avatar">
+                <i class="bi bi-person-circle"></i>
+            </div>
+            <div class="user-details">
+                <span class="user-name" id="ticketsUserName">Administrador</span>
+                <span class="user-role" id="ticketsUserRole">Admin</span>
+            </div>
+        </div>
+        
+        <nav class="sidebar-nav">
+            <a href="dashboard.html" class="nav-item">
+                <i class="bi bi-speedometer2"></i>
+                <span>Dashboard</span>
+            </a>
+            
+            <div class="nav-section-title">GESTIÓN DE USUARIOS</div>
+            <a href="dashboard.html#usuarios" class="nav-item">
+                <i class="bi bi-people"></i>
+                <span>Gestión de Usuarios</span>
+            </a>
+            
+            <div class="nav-section-title">INVENTARIO</div>
+            <a href="gestion-productos.html" class="nav-item">
+                <i class="bi bi-box-seam"></i>
+                <span>Gestión de Productos</span>
+            </a>
+            
+            <div class="nav-section-title">REPORTES</div>
+            <a href="gestion-tickets.html" class="nav-item active">
+                <i class="bi bi-ticket-perforated"></i>
+                <span>Gestión de Tickets</span>
+            </a>
+            <a href="dashboard.html#reportes" class="nav-item">
+                <i class="bi bi-file-earmark-bar-graph"></i>
+                <span>Generar Reporte</span>
+            </a>
+            
+            <a href="#" class="nav-item logout-btn" id="logoutBtn">
+                <i class="bi bi-box-arrow-right"></i>
+                <span>Cerrar Sesión</span>
+            </a>
+        </nav>
+    </div>
+    
+    <!-- Main Content -->
+    <div class="main-content">
+        <!-- Navbar -->
+        <nav class="navbar">
+            <button class="sidebar-toggle" id="sidebarToggle">
+                <i class="bi bi-list"></i>
+            </button>
+            
+            <div class="navbar-title">
+                <h4>Gestión de Tickets</h4>
+            </div>
+            
+            <div class="navbar-actions">
+                <button class="btn-icon" id="notificationsBtn">
+                    <i class="bi bi-bell"></i>
+                    <span class="notification-badge">3</span>
+                </button>
+                <button class="btn-icon" id="settingsBtn">
+                    <i class="bi bi-gear"></i>
+                </button>
+            </div>
+        </nav>
+        
+        <!-- Content Area -->
+        <div class="content-area">
+            <!-- Header con estadísticas -->
+            <div class="row mb-4">
+                <div class="col-md-3">
+                    <div class="stat-card stat-pendiente">
+                        <div class="stat-icon">
+                            <i class="bi bi-clock-history"></i>
+                        </div>
+                        <div class="stat-details">
+                            <h3 id="statPendientes">0</h3>
+                            <p>Pendientes</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="stat-card stat-revision">
+                        <div class="stat-icon">
+                            <i class="bi bi-eye"></i>
+                        </div>
+                        <div class="stat-details">
+                            <h3 id="statRevision">0</h3>
+                            <p>En Revisión</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="stat-card stat-resuelto">
+                        <div class="stat-icon">
+                            <i class="bi bi-check-circle"></i>
+                        </div>
+                        <div class="stat-details">
+                            <h3 id="statResueltos">0</h3>
+                            <p>Resueltos</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="stat-card stat-cerrado">
+                        <div class="stat-icon">
+                            <i class="bi bi-archive"></i>
+                        </div>
+                        <div class="stat-details">
+                            <h3 id="statCerrados">0</h3>
+                            <p>Cerrados</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Filtros -->
+            <div class="card mb-4">
+                <div class="card-body">
+                    <div class="row g-3">
+                        <div class="col-md-3">
+                            <input type="text" class="form-control" id="buscarTicket" placeholder="Buscar por producto, operario...">
+                        </div>
+                        <div class="col-md-2">
+                            <select class="form-select" id="filtroEstado">
+                                <option value="">Todos los estados</option>
+                                <option value="PENDIENTE">Pendiente</option>
+                                <option value="EN_REVISION">En Revisión</option>
+                                <option value="RESUELTO">Resuelto</option>
+                                <option value="CERRADO">Cerrado</option>
+                            </select>
+                        </div>
+                        <div class="col-md-3">
+                            <select class="form-select" id="filtroTipoReporte">
+                                <option value="">Todos los tipos</option>
+                                <option value="FALLA_AVERIA">Falla/Avería</option>
+                                <option value="REQUIERE_MANTENIMIENTO">Requiere Mantenimiento</option>
+                                <option value="OBSERVACION_GENERAL">Observación General</option>
+                                <option value="SOLICITUD_REVISION">Solicitud de Revisión</option>
+                            </select>
+                        </div>
+                        <div class="col-md-2">
+                            <select class="form-select" id="filtroRespuesta">
+                                <option value="">Todas</option>
+                                <option value="con-respuesta">Con respuesta</option>
+                                <option value="sin-respuesta">Sin respuesta</option>
+                            </select>
+                        </div>
+                        <div class="col-md-2">
+                            <button class="btn btn-outline-secondary w-100" id="btnLimpiarFiltros">
+                                <i class="bi bi-x-circle me-1"></i>Limpiar
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Tabla de Tickets -->
+            <div class="card">
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table table-hover" id="tablaTickets">
+                            <thead>
+                                <tr>
+                                    <th>Fecha</th>
+                                    <th>Operario</th>
+                                    <th>Producto</th>
+                                    <th>Tipo Reporte</th>
+                                    <th>Estado</th>
+                                    <th>Respuesta</th>
+                                    <th>Acciones</th>
+                                </tr>
+                            </thead>
+                            <tbody id="tbodyTickets">
+                                <!-- Se llena dinámicamente -->
+                            </tbody>
+                        </table>
+                    </div>
+                    
+                    <div id="emptyState" class="empty-state d-none">
+                        <i class="bi bi-inbox"></i>
+                        <p>No hay tickets registrados</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Modal Gestionar Ticket -->
+    <div class="modal fade" id="modalGestionarTicket" tabindex="-1">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Gestionar Ticket</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <input type="hidden" id="ticketId">
+                    
+                    <!-- Información del Ticket -->
+                    <div class="ticket-info mb-4">
+                        <div class="row g-3">
+                            <div class="col-md-6">
+                                <strong>Producto:</strong>
+                                <p id="infoProducto" class="mb-0"></p>
+                            </div>
+                            <div class="col-md-6">
+                                <strong>Operario:</strong>
+                                <p id="infoOperario" class="mb-0"></p>
+                            </div>
+                            <div class="col-md-6">
+                                <strong>Tipo de Reporte:</strong>
+                                <p><span id="infoTipoReporte"></span></p>
+                            </div>
+                            <div class="col-md-6">
+                                <strong>Fecha de Creación:</strong>
+                                <p id="infoFechaCreacion" class="mb-0"></p>
+                            </div>
+                            <div class="col-12">
+                                <strong>Descripción del Problema:</strong>
+                                <p id="infoDescripcion" class="ticket-descripcion"></p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Gestión -->
+                    <form id="formGestionTicket">
+                        <div class="row g-3">
+                            <!-- Estado -->
+                            <div class="col-md-6">
+                                <label class="form-label">Estado del Ticket <span class="text-danger">*</span></label>
+                                <select class="form-select" id="ticketEstado" required>
+                                    <option value="PENDIENTE">Pendiente</option>
+                                    <option value="EN_REVISION">En Revisión</option>
+                                    <option value="RESUELTO">Resuelto</option>
+                                    <option value="CERRADO">Cerrado</option>
+                                </select>
+                            </div>
+                            
+                            <div class="col-md-6">
+                                <label class="form-label">Última Actualización</label>
+                                <p class="form-control-plaintext" id="infoFechaActualizacion">-</p>
+                            </div>
+                            
+                            <!-- Respuesta/Acción -->
+                            <div class="col-12">
+                                <label class="form-label">Respuesta o Acción Tomada</label>
+                                <textarea class="form-control" id="ticketRespuesta" rows="5" placeholder="Describe la solución aplicada, acciones realizadas o comentarios..."></textarea>
+                                <small class="text-muted">Esta información será visible para el operario.</small>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                    <button type="button" class="btn btn-primary" id="btnGuardarTicket">Guardar Cambios</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Modal Ver Detalle -->
+    <div class="modal fade" id="modalVerDetalle" tabindex="-1">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Detalle del Ticket</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="row g-3">
+                        <div class="col-md-6">
+                            <strong>Producto:</strong>
+                            <p id="verProducto"></p>
+                        </div>
+                        <div class="col-md-6">
+                            <strong>Operario:</strong>
+                            <p id="verOperario"></p>
+                        </div>
+                        <div class="col-md-6">
+                            <strong>Tipo de Reporte:</strong>
+                            <p><span id="verTipoReporte"></span></p>
+                        </div>
+                        <div class="col-md-6">
+                            <strong>Estado:</strong>
+                            <p><span id="verEstado"></span></p>
+                        </div>
+                        <div class="col-md-6">
+                            <strong>Fecha de Creación:</strong>
+                            <p id="verFechaCreacion"></p>
+                        </div>
+                        <div class="col-md-6">
+                            <strong>Última Actualización:</strong>
+                            <p id="verFechaActualizacion"></p>
+                        </div>
+                        <div class="col-12">
+                            <strong>Descripción del Problema:</strong>
+                            <p id="verDescripcion" class="ticket-descripcion"></p>
+                        </div>
+                        <div class="col-12" id="verRespuestaContainer" style="display: none;">
+                            <strong>Respuesta/Acción:</strong>
+                            <div class="alert alert-info">
+                                <p id="verRespuesta" class="mb-0"></p>
+                                <small class="text-muted" id="verFechaRespuesta"></small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Bootstrap 5 JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- Custom JS -->
+    <script src="../js/admin/gestion-tickets.js"></script>
+</body>
+</html>

@@ -1,0 +1,216 @@
+/* Estilos específicos para gestión de productos */
+/* Reutiliza estilos base de dashboard.css */
+
+.section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+}
+
+.section-header h5 {
+    margin: 0;
+    color: #2c3e50;
+    font-weight: 600;
+}
+
+.btn-crear {
+    background: linear-gradient(135deg, #ff9800 0%, #ff6f00 100%);
+    color: white;
+    border: none;
+    padding: 0.6rem 1.5rem;
+    border-radius: 8px;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+.btn-crear:hover {
+    box-shadow: 0 4px 12px rgba(255, 152, 0, 0.3);
+    color: white;
+}
+
+/* Campos condicionales del formulario */
+#grupoTipoMaquinaria,
+#grupoEstado,
+#grupoStock {
+    transition: all 0.3s ease;
+}
+
+/* Badge personalizado para tipos */
+.badge-maquinaria {
+    background: linear-gradient(135deg, #3498db 0%, #2980b9 100%);
+    color: white;
+    padding: 0.4rem 0.8rem;
+    border-radius: 6px;
+    font-weight: 500;
+}
+
+.badge-repuesto {
+    background: linear-gradient(135deg, #2ecc71 0%, #27ae60 100%);
+    color: white;
+    padding: 0.4rem 0.8rem;
+    border-radius: 6px;
+    font-weight: 500;
+}
+
+/* Badge para estados de maquinaria */
+.badge-funcionando {
+    background-color: #27ae60;
+    color: white;
+}
+
+.badge-mantenimiento {
+    background-color: #f39c12;
+    color: white;
+}
+
+.badge-revision {
+    background-color: #3498db;
+    color: white;
+}
+
+.badge-baja {
+    background-color: #95a5a6;
+    color: white;
+}
+
+/* Badge para stock */
+.badge-stock {
+    background-color: #34495e;
+    color: white;
+    padding: 0.3rem 0.6rem;
+    border-radius: 4px;
+    font-size: 0.85rem;
+}
+
+.badge-sin-stock {
+    background-color: #e74c3c;
+    color: white;
+    padding: 0.3rem 0.6rem;
+    border-radius: 4px;
+    font-size: 0.85rem;
+}
+
+/* Autocompletado */
+#productoNombre,
+#productoCategoria,
+#productoUbicacion {
+    position: relative;
+}
+
+/* Estilos para datalist */
+datalist {
+    position: absolute;
+    background: white;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    max-height: 200px;
+    overflow-y: auto;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+/* Tabla responsive */
+.table th {
+    font-weight: 600;
+    color: #2c3e50;
+    border-bottom: 2px solid #ff9800;
+    white-space: nowrap;
+}
+
+.table td {
+    vertical-align: middle;
+}
+
+/* Botones de acción en tabla */
+.btn-edit {
+    background-color: #ff9800;
+    color: white;
+    border: none;
+    padding: 0.4rem 0.8rem;
+    border-radius: 6px;
+    font-size: 0.875rem;
+    transition: all 0.3s ease;
+}
+
+.btn-edit:hover {
+    background-color: #e68900;
+    color: white;
+}
+
+.btn-delete {
+    background-color: #e74c3c;
+    color: white;
+    border: none;
+    padding: 0.4rem 0.8rem;
+    border-radius: 6px;
+    font-size: 0.875rem;
+    transition: all 0.3s ease;
+}
+
+.btn-delete:hover {
+    background-color: #c0392b;
+    color: white;
+}
+
+.btn-activate {
+    background-color: #27ae60;
+    color: white;
+    border: none;
+    padding: 0.4rem 0.8rem;
+    border-radius: 6px;
+    font-size: 0.875rem;
+    transition: all 0.3s ease;
+}
+
+.btn-activate:hover {
+    background-color: #229954;
+    color: white;
+}
+
+/* Estado inactivo en tabla */
+tr.producto-inactivo {
+    opacity: 0.6;
+    background-color: #f8f9fa;
+}
+
+/* Modal header personalizado */
+.modal-header {
+    background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+    color: white;
+    border-bottom: 3px solid #ff9800;
+}
+
+.modal-header .btn-close {
+    filter: invert(1);
+}
+
+/* Form labels */
+.form-label {
+    font-weight: 500;
+    color: #2c3e50;
+    margin-bottom: 0.5rem;
+}
+
+/* Form controls focus */
+.form-control:focus,
+.form-select:focus {
+    border-color: #ff9800;
+    box-shadow: 0 0 0 0.2rem rgba(255, 152, 0, 0.25);
+}
+
+/* Empty state */
+.empty-state {
+    text-align: center;
+    padding: 3rem 1rem;
+    color: #95a5a6;
+}
+
+.empty-state i {
+    font-size: 4rem;
+    margin-bottom: 1rem;
+}
+
+.empty-state p {
+    font-size: 1.1rem;
+    margin: 0;
+}
