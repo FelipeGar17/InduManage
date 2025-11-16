@@ -271,34 +271,6 @@ indumanage/
 }
 ```
 
-## 🎯 Roadmap
-
-- [x] Sprint 1: Sistema de autenticación
-- [x] Sprint 2: Gestión de usuarios y productos
-- [x] Sprint 2.5: Sistema de tickets para operarios
-- [ ] **Sprint 3: Módulo de Clientes** 🚧 (Ver [SPRINT3-GUIDE.md](docs/SPRINT3-GUIDE.md))
-  - [ ] Dashboard de cliente
-  - [ ] Visualización de equipos alquilados
-  - [ ] Gestión de costos/alquileres
-  - [ ] Historial de alquileres
-- [ ] Sprint 4: Sistema de reportes y estadísticas
-- [ ] Sprint 5: Notificaciones en tiempo real
-- [ ] Sprint 6: Módulo de mantenimiento preventivo
-
-## 🚧 Sprint 3 - Módulo de Clientes
-
-### Para el desarrollador que continuará con el Sprint 3:
-
-📘 **Lee la guía completa:** [SPRINT3-GUIDE.md](docs/SPRINT3-GUIDE.md)
-
-Esta guía contiene:
-- ✅ Estructura de archivos y rutas
-- ✅ Funcionalidades pendientes detalladas
-- ✅ Ejemplos de código
-- ✅ Endpoints del backend
-- ✅ Componentes del frontend
-- ✅ Campo de costo/alquiler a agregar
-
 **Pendiente principal:**
 - Agregar campo de **costo de alquiler por día** en el modelo Producto
 - Crear dashboard de cliente
@@ -321,10 +293,6 @@ Esta guía contiene:
 
 Este proyecto está bajo la Licencia MIT.
 
-## 👨‍💻 Autores
-
-- **Felipe Pabón** - *Desarrollo Sprint 1 y 2* - [GitHub](https://github.com/jfelipepabong)
-- **[Tu Compañero]** - *Sprint 3: Módulo de Clientes*
 
 ## 📞 Contacto
 
