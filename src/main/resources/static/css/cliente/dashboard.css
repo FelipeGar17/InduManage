@@ -1,0 +1,287 @@
+/* ===== Estilos Dashboard Cliente ===== */
+/* Reutiliza base de dashboard.css */
+
+/* Stats Cards Cliente */
+.cliente-stat-card {
+    background: white;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    transition: transform 0.2s;
+    border-left: 4px solid #ff9800;
+}
+
+.cliente-stat-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+.cliente-stat-icon {
+    width: 60px;
+    height: 60px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    background: linear-gradient(135deg, #ff9800 0%, #ff6f00 100%);
+    color: white;
+}
+
+.cliente-stat-details h3 {
+    margin: 0;
+    font-size: 28px;
+    font-weight: 700;
+    color: #000;
+}
+
+.cliente-stat-details p {
+    margin: 0;
+    color: #666;
+    font-size: 14px;
+}
+
+/* Quick Actions */
+.quick-action-card {
+    background: white;
+    border-radius: 12px;
+    padding: 30px;
+    text-align: center;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s;
+    cursor: pointer;
+    border: 2px solid transparent;
+}
+
+.quick-action-card:hover {
+    border-color: #ff9800;
+    transform: translateY(-5px);
+    box-shadow: 0 6px 12px rgba(255, 152, 0, 0.2);
+}
+
+.quick-action-icon {
+    width: 80px;
+    height: 80px;
+    margin: 0 auto 20px;
+    background: linear-gradient(135deg, #ff9800 0%, #ff6f00 100%);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 36px;
+    color: white;
+}
+
+.quick-action-title {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: #2c3e50;
+    margin-bottom: 10px;
+}
+
+.quick-action-desc {
+    font-size: 0.9rem;
+    color: #666;
+}
+
+/* Producto Card para catálogo */
+.producto-card {
+    background: white;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s;
+    height: 100%;
+}
+
+.producto-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+.producto-imagen {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    background: linear-gradient(135deg, #f5f5f5 0%, #e0e0e0 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 64px;
+    color: #bdbdbd;
+}
+
+.producto-body {
+    padding: 20px;
+}
+
+.producto-tipo {
+    display: inline-block;
+    padding: 4px 12px;
+    border-radius: 12px;
+    font-size: 12px;
+    font-weight: 600;
+    margin-bottom: 10px;
+}
+
+.producto-tipo.maquinaria {
+    background: #e3f2fd;
+    color: #0d47a1;
+}
+
+.producto-tipo.repuesto {
+    background: #e8f5e9;
+    color: #2e7d32;
+}
+
+.producto-nombre {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #2c3e50;
+    margin-bottom: 5px;
+}
+
+.producto-codigo {
+    font-size: 0.85rem;
+    color: #666;
+    margin-bottom: 10px;
+}
+
+.producto-precio {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #ff9800;
+    margin-bottom: 5px;
+}
+
+.producto-precio-label {
+    font-size: 0.75rem;
+    color: #666;
+    margin-bottom: 15px;
+}
+
+.btn-agregar-carrito {
+    background: linear-gradient(135deg, #ff9800 0%, #ff6f00 100%);
+    color: white;
+    border: none;
+    padding: 10px;
+    border-radius: 8px;
+    width: 100%;
+    font-weight: 600;
+    transition: all 0.3s;
+}
+
+.btn-agregar-carrito:hover {
+    transform: scale(1.02);
+    box-shadow: 0 4px 12px rgba(255, 152, 0, 0.3);
+    color: white;
+}
+
+.btn-ver-detalle {
+    background: white;
+    color: #ff9800;
+    border: 2px solid #ff9800;
+    padding: 8px;
+    border-radius: 8px;
+    width: 100%;
+    font-weight: 600;
+    transition: all 0.3s;
+    margin-bottom: 10px;
+}
+
+.btn-ver-detalle:hover {
+    background: #ff9800;
+    color: white;
+}
+
+/* Carrito Badge */
+.carrito-badge {
+    position: absolute;
+    top: -8px;
+    right: -8px;
+    background: #ff9800;
+    color: white;
+    border-radius: 50%;
+    width: 24px;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    font-weight: 700;
+}
+
+/* Estados de Orden */
+.orden-card {
+    background: white;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    margin-bottom: 15px;
+    border-left: 4px solid #ff9800;
+}
+
+.orden-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.orden-numero {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #2c3e50;
+}
+
+.badge-orden-pendiente {
+    background: #fff3cd;
+    color: #856404;
+    padding: 6px 12px;
+    border-radius: 12px;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.badge-orden-aprobada {
+    background: #d1e7dd;
+    color: #0f5132;
+    padding: 6px 12px;
+    border-radius: 12px;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.badge-orden-rechazada {
+    background: #f8d7da;
+    color: #842029;
+    padding: 6px 12px;
+    border-radius: 12px;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.badge-orden-completada {
+    background: #d1e7dd;
+    color: #0f5132;
+    padding: 6px 12px;
+    border-radius: 12px;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .producto-card {
+        margin-bottom: 20px;
+    }
+    
+    .quick-action-card {
+        margin-bottom: 15px;
+    }
+}

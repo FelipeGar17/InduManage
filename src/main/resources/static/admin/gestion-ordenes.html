@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestión de Órdenes - InduManage</title>
+    
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="../css/admin/dashboard.css">
+    <link rel="stylesheet" href="../css/admin/gestion-ordenes.css">
+</head>
+<body>
+    <!-- Sidebar -->
+    <div class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <div class="logo-container">
+                <i class="bi bi-truck-front-fill"></i>
+                <span class="logo-text">InduManage</span>
+            </div>
+        </div>
+        
+        <div class="user-info">
+            <div class="user-avatar">
+                <i class="bi bi-person-circle"></i>
+            </div>
+            <div class="user-details">
+                <span class="user-name" id="ordenesUserName">Administrador</span>
+                <span class="user-role" id="ordenesUserRole">Admin</span>
+            </div>
+        </div>
+        
+        <nav class="sidebar-nav">
+            <a href="dashboard.html" class="nav-item">
+                <i class="bi bi-speedometer2"></i>
+                <span>Dashboard</span>
+            </a>
+            
+            <div class="nav-section-title">GESTIÓN DE USUARIOS</div>
+            <a href="dashboard.html#usuarios" class="nav-item">
+                <i class="bi bi-people"></i>
+                <span>Gestión de Usuarios</span>
+            </a>
+            
+            <div class="nav-section-title">INVENTARIO</div>
+            <a href="gestion-productos.html" class="nav-item">
+                <i class="bi bi-box-seam"></i>
+                <span>Gestión de Productos</span>
+            </a>
+            
+            <div class="nav-section-title">VENTAS Y ALQUILERES</div>
+            <a href="gestion-ordenes.html" class="nav-item active">
+                <i class="bi bi-cart-check"></i>
+                <span>Gestión de Órdenes</span>
+            </a>
+            
+            <div class="nav-section-title">REPORTES</div>
+            <a href="gestion-tickets.html" class="nav-item">
+                <i class="bi bi-ticket-perforated"></i>
+                <span>Gestión de Tickets</span>
+            </a>
+            
+            <a href="#" class="nav-item logout-btn" id="logoutBtn">
+                <i class="bi bi-box-arrow-right"></i>
+                <span>Cerrar Sesión</span>
+            </a>
+        </nav>
+    </div>
+    
+    <!-- Main Content -->
+    <div class="main-content">
+        <!-- Navbar -->
+        <nav class="navbar">
+            <button class="sidebar-toggle" id="sidebarToggle">
+                <i class="bi bi-list"></i>
+            </button>
+            
+            <div class="navbar-title">
+                <h4>Gestión de Órdenes</h4>
+            </div>
+            
+            <div class="navbar-actions">
+                <button class="btn-icon" id="notificationsBtn">
+                    <i class="bi bi-bell"></i>
+                    <span class="notification-badge">3</span>
+                </button>
+                <button class="btn-icon" id="settingsBtn">
+                    <i class="bi bi-gear"></i>
+                </button>
+            </div>
+        </nav>
+        
+        <!-- Content Area -->
+        <div class="content-area">
+            <!-- Estadísticas -->
+            <div class="row mb-4">
+                <div class="col-md-3">
+                    <div class="stat-card stat-pendiente">
+                        <div class="stat-icon">
+                            <i class="bi bi-clock-history"></i>
+                        </div>
+                        <div class="stat-details">
+                            <h3 id="statPendientes">0</h3>
+                            <p>Pendientes</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="stat-card stat-revision">
+                        <div class="stat-icon">
+                            <i class="bi bi-eye"></i>
+                        </div>
+                        <div class="stat-details">
+                            <h3 id="statRevision">0</h3>
+                            <p>En Revisión</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="stat-card stat-aprobadas">
+                        <div class="stat-icon">
+                            <i class="bi bi-check-circle"></i>
+                        </div>
+                        <div class="stat-details">
+                            <h3 id="statAprobadas">0</h3>
+                            <p>Aprobadas</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="stat-card stat-completadas">
+                        <div class="stat-icon">
+                            <i class="bi bi-trophy"></i>
+                        </div>
+                        <div class="stat-details">
+                            <h3 id="statCompletadas">0</h3>
+                            <p>Completadas</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Filtros -->
+            <div class="card mb-4">
+                <div class="card-body">
+                    <div class="row g-3">
+                        <div class="col-md-3">
+                            <input type="text" class="form-control" id="buscarOrden" placeholder="Buscar por N° orden o cliente...">
+                        </div>
+                        <div class="col-md-2">
+                            <select class="form-select" id="filtroEstado">
+                                <option value="">Todos los estados</option>
+                                <option value="PENDIENTE">Pendiente</option>
+                                <option value="EN_REVISION">En Revisión</option>
+                                <option value="APROBADA">Aprobada</option>
+                                <option value="RECHAZADA">Rechazada</option>
+                                <option value="EN_PROCESO">En Proceso</option>
+                                <option value="COMPLETADA">Completada</option>
+                                <option value="CANCELADA">Cancelada</option>
+                            </select>
+                        </div>
+                        <div class="col-md-2">
+                            <select class="form-select" id="filtroTipo">
+                                <option value="">Todos los tipos</option>
+                                <option value="VENTA">Venta</option>
+                                <option value="ALQUILER">Alquiler</option>
+                                <option value="MIXTA">Mixta</option>
+                            </select>
+                        </div>
+                        <div class="col-md-3">
+                            <input type="date" class="form-control" id="filtroFecha">
+                        </div>
+                        <div class="col-md-2">
+                            <button class="btn btn-outline-secondary w-100" id="btnLimpiarFiltros">
+                                <i class="bi bi-x-circle me-1"></i>Limpiar
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Tabla de Órdenes -->
+            <div class="card">
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table table-hover" id="tablaOrdenes">
+                            <thead>
+                                <tr>
+                                    <th>N° Orden</th>
+                                    <th>Cliente</th>
+                                    <th>Tipo</th>
+                                    <th>Estado</th>
+                                    <th>Total</th>
+                                    <th>Fecha</th>
+                                    <th class="text-center">Acciones</th>
+                                </tr>
+                            </thead>
+                            <tbody id="tbodyOrdenes">
+                                <!-- Se llena dinámicamente -->
+                            </tbody>
+                        </table>
+                    </div>
+                    
+                    <div id="emptyState" class="empty-state d-none">
+                        <i class="bi bi-inbox"></i>
+                        <p>No hay órdenes registradas</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Modal Ver Detalle -->
+    <div class="modal fade" id="modalVerDetalle" tabindex="-1">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Detalle de la Orden</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <!-- Info General -->
+                    <div class="row g-3 mb-4">
+                        <div class="col-md-6">
+                            <strong>Número de Orden:</strong>
+                            <p id="verNumeroOrden"></p>
+                        </div>
+                        <div class="col-md-6">
+                            <strong>Tipo:</strong>
+                            <p><span id="verTipo"></span></p>
+                        </div>
+                        <div class="col-md-6">
+                            <strong>Estado:</strong>
+                            <p><span id="verEstado"></span></p>
+                        </div>
+                        <div class="col-md-6">
+                            <strong>Fecha de Creación:</strong>
+                            <p id="verFechaCreacion"></p>
+                        </div>
+                    </div>
+
+                    <!-- Info Cliente -->
+                    <h6 class="mb-3"><i class="bi bi-person me-2"></i>Información del Cliente</h6>
+                    <div class="row g-3 mb-4 bg-light p-3 rounded">
+                        <div class="col-md-6">
+                            <strong>Nombre:</strong>
+                            <p id="verClienteNombre"></p>
+                        </div>
+                        <div class="col-md-6">
+                            <strong>Correo:</strong>
+                            <p id="verClienteCorreo"></p>
+                        </div>
+                        <div class="col-md-6">
+                            <strong>Teléfono:</strong>
+                            <p id="verClienteTelefono"></p>
+                        </div>
+                        <div class="col-md-6">
+                            <strong>Dirección:</strong>
+                            <p id="verDireccion">-</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Items -->
+                    <h6 class="mb-3"><i class="bi bi-box me-2"></i>Productos/Servicios</h6>
+                    <div id="verItems" class="mb-4">
+                        <!-- Se llena dinámicamente -->
+                    </div>
+                    
+                    <!-- Totales -->
+                    <div class="row g-2">
+                        <div class="col-12">
+                            <div class="d-flex justify-content-between">
+                                <strong>Subtotal:</strong>
+                                <span id="verSubtotal"></span>
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <div class="d-flex justify-content-between">
+                                <strong>Impuestos (19%):</strong>
+                                <span id="verImpuestos"></span>
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <div class="d-flex justify-content-between border-top pt-2">
+                                <strong class="fs-5">Total:</strong>
+                                <strong class="fs-5 text-primary" id="verTotal"></strong>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Observaciones -->
+                    <div id="verObservacionesContainer" class="mt-4" style="display: none;">
+                        <h6>Observaciones:</h6>
+                        <div class="alert alert-info">
+                            <p id="verObservaciones" class="mb-0"></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Modal Gestionar Orden -->
+    <div class="modal fade" id="modalGestionar" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Gestionar Orden</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <input type="hidden" id="gestionarOrdenId">
+                    
+                    <div class="alert alert-info">
+                        <strong>Orden:</strong> <span id="gestionarNumeroOrden"></span><br>
+                        <strong>Cliente:</strong> <span id="gestionarCliente"></span><br>
+                        <strong>Total:</strong> <span id="gestionarTotal"></span>
+                    </div>
+                    
+                    <div class="mb-3">
+                        <label class="form-label">Estado Actual</label>
+                        <p><span id="gestionarEstadoActual"></span></p>
+                    </div>
+                    
+                    <div class="mb-3">
+                        <label class="form-label">Cambiar Estado</label>
+                        <select class="form-select" id="gestionarNuevoEstado">
+                            <option value="">Seleccionar nuevo estado...</option>
+                            <option value="EN_REVISION">Poner en Revisión</option>
+                            <option value="APROBADA">Aprobar</option>
+                            <option value="RECHAZADA">Rechazar</option>
+                            <option value="EN_PROCESO">Marcar en Proceso</option>
+                            <option value="COMPLETADA">Completar</option>
+                        </select>
+                    </div>
+                    
+                    <div class="mb-3">
+                        <label class="form-label">Observaciones del Administrador</label>
+                        <textarea class="form-control" id="gestionarObservaciones" rows="3" placeholder="Agregue observaciones o comentarios..."></textarea>
+                    </div>
+                    
+                    <div id="gestionarMotivoContainer" class="mb-3" style="display: none;">
+                        <label class="form-label">Motivo de Rechazo <span class="text-danger">*</span></label>
+                        <textarea class="form-control" id="gestionarMotivo" rows="2" placeholder="Ingrese el motivo del rechazo..."></textarea>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                    <button type="button" class="btn btn-primary" id="btnGuardarGestion">Guardar Cambios</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Bootstrap 5 JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- Custom JS -->
+    <script src="../js/admin/gestion-ordenes.js"></script>
+</body>
+</html>

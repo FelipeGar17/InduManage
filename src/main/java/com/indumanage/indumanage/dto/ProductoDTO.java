@@ -21,6 +21,17 @@ public class ProductoDTO {
     private String ubicacion;
     private String estado; // FUNCIONANDO, MANTENIMIENTO, REVISION, BAJA
     private Integer stock;
+    
+    // ===== NUEVOS CAMPOS =====
+    private Double precio;
+    private Double precioAlquilerDia;
+    private Double precioAlquilerSemana;
+    private Double precioAlquilerMes;
+    private Integer stockMinimo;
+    private String imagenUrl;
+    private Boolean disponibleVenta;
+    
+    // ===== CAMPOS EXISTENTES =====
     private LocalDate fechaAdquisicion;
     private String observaciones;
     private Boolean activo;

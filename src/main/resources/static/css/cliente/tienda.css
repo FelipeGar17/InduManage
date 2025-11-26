@@ -1,0 +1,461 @@
+/* css/cliente/tienda.css */
+
+/* Tarjetas de productos */
+.product-card {
+    background: white;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.product-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+/* Contenedor de imagen con aspect ratio fijo */
+.product-image-container {
+    position: relative;
+    width: 100%;
+    height: 200px;
+    overflow: hidden;
+    background: #f5f5f5;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.product-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Cubre todo el espacio sin deformar */
+    object-position: center;
+    transition: transform 0.3s ease;
+}
+
+.product-card:hover .product-image {
+    transform: scale(1.05);
+}
+
+/* Imagen placeholder cuando no hay imagen */
+.product-image-placeholder {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, #e0e0e0 0%, #f5f5f5 100%);
+    color: #999;
+}
+
+.product-image-placeholder i {
+    font-size: 3rem;
+    margin-bottom: 0.5rem;
+    opacity: 0.5;
+}
+
+.product-image-placeholder span {
+    font-size: 0.85rem;
+    opacity: 0.7;
+}
+
+/* Badge "Sin stock" superpuesto en la imagen */
+.product-badge-overlay {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    z-index: 10;
+}
+
+.product-body {
+    padding: 15px;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.product-title {
+    font-size: 1rem;
+    font-weight: 600;
+    margin-bottom: 8px;
+    color: #2c3e50;
+    height: 48px;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    line-height: 1.4;
+}
+
+.product-code {
+    font-size: 0.85rem;
+    color: #6c757d;
+    margin-bottom: 10px;
+}
+
+.product-category {
+    font-size: 0.75rem;
+    color: #95a5a6;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.product-price {
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: #ff9800;
+    margin-bottom: 10px;
+}
+
+.product-price-detail {
+    font-size: 0.8rem;
+    color: #6c757d;
+    margin-top: -5px;
+    margin-bottom: 10px;
+}
+
+.product-stock {
+    font-size: 0.85rem;
+    margin-bottom: 10px;
+}
+
+.product-footer {
+    display: flex;
+    gap: 8px;
+    margin-top: auto;
+    padding-top: 10px;
+}
+
+.btn-detalle {
+    flex: 1;
+    background: #3498db;
+    color: white;
+    border: none;
+    padding: 10px 12px;
+    border-radius: 8px;
+    font-size: 0.875rem;
+    font-weight: 500;
+    transition: all 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+}
+
+.btn-detalle:hover {
+    background: #2980b9;
+    color: white;
+    transform: translateY(-2px);
+}
+
+.btn-quick-add {
+    background: #ff9800;
+    color: white;
+    border: none;
+    padding: 10px 16px;
+    border-radius: 8px;
+    font-size: 1.1rem;
+    transition: all 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.btn-quick-add:hover {
+    background: #e68900;
+    color: white;
+    transform: translateY(-2px);
+}
+
+.btn-quick-add:disabled {
+    background: #bdc3c7;
+    cursor: not-allowed;
+    transform: none;
+}
+
+/* Badge tipo producto */
+.badge-tipo-repuesto {
+    background: linear-gradient(135deg, #2ecc71 0%, #27ae60 100%);
+    color: white;
+    font-weight: 500;
+    padding: 4px 10px;
+}
+
+.badge-tipo-maquinaria {
+    background: linear-gradient(135deg, #3498db 0%, #2980b9 100%);
+    color: white;
+    font-weight: 500;
+    padding: 4px 10px;
+}
+
+/* Badge stock */
+.badge-stock-ok {
+    background: #27ae60;
+    color: white;
+}
+
+.badge-stock-bajo {
+    background: #f39c12;
+    color: white;
+}
+
+.badge-sin-stock {
+    background: #e74c3c;
+    color: white;
+}
+
+/* Tabs personalizados */
+.nav-tabs {
+    border-bottom: 2px solid #e0e0e0;
+}
+
+.nav-tabs .nav-link {
+    color: #6c757d;
+    font-weight: 500;
+    border: none;
+    border-bottom: 3px solid transparent;
+    padding: 12px 20px;
+    transition: all 0.2s;
+}
+
+.nav-tabs .nav-link:hover {
+    color: #ff9800;
+    border-bottom-color: rgba(255, 152, 0, 0.3);
+}
+
+.nav-tabs .nav-link.active {
+    color: #ff9800;
+    border-bottom: 3px solid #ff9800;
+    background: transparent;
+}
+
+/* Filtros mejorados */
+.filters-card {
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.filter-group {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.filter-group label {
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: #2c3e50;
+    margin-bottom: 0;
+    white-space: nowrap;
+}
+
+/* Empty state */
+.empty-state {
+    text-align: center;
+    padding: 60px 20px;
+    color: #999;
+}
+
+.empty-state i {
+    font-size: 64px;
+    margin-bottom: 16px;
+    opacity: 0.5;
+}
+
+.empty-state p {
+    font-size: 1.1rem;
+    margin: 0;
+}
+
+/* Modal mejorado */
+.modal-dialog.modal-lg {
+    max-width: 900px;
+}
+
+.modal-content {
+    border-radius: 15px;
+    overflow: hidden;
+}
+
+.modal-header {
+    background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+    color: white;
+    border-bottom: 3px solid #ff9800;
+    padding: 1.5rem;
+}
+
+.modal-body {
+    padding: 2rem;
+}
+
+.modal-product-image-container {
+    width: 100%;
+    height: 400px;
+    background: #f5f5f5;
+    border-radius: 12px;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#modalImagen {
+    width: 100%;
+    height: 100%;
+    object-fit: contain; /* Mantiene proporción sin cortar */
+    object-position: center;
+}
+
+.modal-product-info h4 {
+    color: #2c3e50;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+}
+
+.modal-product-info .text-muted {
+    font-size: 0.9rem;
+    margin-bottom: 1rem;
+}
+
+.modal-product-info hr {
+    border-top: 2px solid #e0e0e0;
+    margin: 1.5rem 0;
+}
+
+.modal-product-description {
+    color: #555;
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+}
+
+/* Preloader de imagen */
+.image-loading {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    background: #f5f5f5;
+}
+
+.image-loading .spinner-border {
+    color: #ff9800;
+}
+
+/* Contador de resultados */
+.results-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+    padding: 0.75rem 1rem;
+    background: #f8f9fa;
+    border-radius: 8px;
+}
+
+.results-count {
+    font-size: 0.9rem;
+    color: #6c757d;
+    font-weight: 500;
+}
+
+.results-sort {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.results-sort label {
+    font-size: 0.85rem;
+    margin: 0;
+    color: #6c757d;
+}
+
+.results-sort select {
+    font-size: 0.85rem;
+    padding: 4px 8px;
+    border-radius: 6px;
+}
+
+/* Animación de carga */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.product-card {
+    animation: fadeIn 0.3s ease-out;
+}
+
+/* Responsive */
+@media (max-width: 992px) {
+    .product-image-container {
+        height: 180px;
+    }
+    
+    .modal-product-image-container {
+        height: 300px;
+        margin-bottom: 1.5rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .product-card {
+        margin-bottom: 20px;
+    }
+    
+    .product-image-container {
+        height: 200px;
+    }
+    
+    .product-footer {
+        flex-direction: row;
+    }
+    
+    .btn-detalle,
+    .btn-quick-add {
+        font-size: 0.8rem;
+        padding: 8px 10px;
+    }
+    
+    .nav-tabs .nav-link {
+        padding: 10px 15px;
+        font-size: 0.9rem;
+    }
+    
+    .modal-product-image-container {
+        height: 250px;
+    }
+}
+
+@media (max-width: 576px) {
+    .product-title {
+        font-size: 0.9rem;
+        height: auto;
+        -webkit-line-clamp: 3;
+    }
+    
+    .product-price {
+        font-size: 1.1rem;
+    }
+    
+    .results-info {
+        flex-direction: column;
+        gap: 10px;
+        align-items: flex-start;
+    }
+}

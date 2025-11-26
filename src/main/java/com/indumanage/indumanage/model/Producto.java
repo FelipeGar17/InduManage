@@ -38,6 +38,24 @@ public class Producto {
     
     private Integer stock; // Solo si tipo=REPUESTO
     
+    // ===== NUEVOS CAMPOS PARA TIENDA =====
+    
+    private Double precio; // Precio de venta para REPUESTO o precio diario para MAQUINARIA
+    
+    private Double precioAlquilerDia; // Solo para MAQUINARIA - precio por día de alquiler
+    
+    private Double precioAlquilerSemana; // Solo para MAQUINARIA - precio por semana
+    
+    private Double precioAlquilerMes; // Solo para MAQUINARIA - precio por mes
+    
+    private Integer stockMinimo; // Solo para REPUESTO - alerta de stock bajo
+    
+    private String imagenUrl; // URL de imagen del producto
+    
+    private Boolean disponibleVenta; // true si está disponible para venta/alquiler
+    
+    // ===== CAMPOS EXISTENTES =====
+    
     private LocalDate fechaAdquisicion;
     
     private String observaciones;

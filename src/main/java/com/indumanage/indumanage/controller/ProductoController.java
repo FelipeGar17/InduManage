@@ -140,49 +140,73 @@ public class ProductoController {
             return ResponseEntity.badRequest().body(e.getMessage());
         }
     }
-    
+
+    // En ProductoController.java - REEMPLAZAR método convertirADTO
+
     private ProductoDTO convertirADTO(Producto producto) {
-        ProductoDTO dto = new ProductoDTO();
-        dto.setId(producto.getId());
-        dto.setCodigo(producto.getCodigo());
-        dto.setTipo(producto.getTipo().name());
-        dto.setTipoMaquinaria(producto.getTipoMaquinaria() != null ? producto.getTipoMaquinaria().name() : null);
-        dto.setNombre(producto.getNombre());
-        dto.setDescripcion(producto.getDescripcion());
-        dto.setCategoria(producto.getCategoria());
-        dto.setUbicacion(producto.getUbicacion());
-        dto.setEstado(producto.getEstado() != null ? producto.getEstado().name() : null);
-        dto.setStock(producto.getStock());
-        dto.setFechaAdquisicion(producto.getFechaAdquisicion());
-        dto.setObservaciones(producto.getObservaciones());
-        dto.setActivo(producto.isActivo());
-        dto.setFechaCreacion(producto.getFechaCreacion());
-        dto.setFechaActualizacion(producto.getFechaActualizacion());
-        return dto;
+    ProductoDTO dto = new ProductoDTO();
+    dto.setId(producto.getId());
+    dto.setCodigo(producto.getCodigo());
+    dto.setTipo(producto.getTipo().name());
+    dto.setTipoMaquinaria(producto.getTipoMaquinaria() != null ? producto.getTipoMaquinaria().name() : null);
+    dto.setNombre(producto.getNombre());
+    dto.setDescripcion(producto.getDescripcion());
+    dto.setCategoria(producto.getCategoria());
+    dto.setUbicacion(producto.getUbicacion());
+    dto.setEstado(producto.getEstado() != null ? producto.getEstado().name() : null);
+    dto.setStock(producto.getStock());
+
+    // Nuevos campos
+    dto.setPrecio(producto.getPrecio());
+    dto.setPrecioAlquilerDia(producto.getPrecioAlquilerDia());
+    dto.setPrecioAlquilerSemana(producto.getPrecioAlquilerSemana());
+    dto.setPrecioAlquilerMes(producto.getPrecioAlquilerMes());
+    dto.setStockMinimo(producto.getStockMinimo());
+    dto.setImagenUrl(producto.getImagenUrl());
+    dto.setDisponibleVenta(producto.getDisponibleVenta());
+
+    dto.setFechaAdquisicion(producto.getFechaAdquisicion());
+    dto.setObservaciones(producto.getObservaciones());
+    dto.setActivo(producto.isActivo());
+    dto.setFechaCreacion(producto.getFechaCreacion());
+    dto.setFechaActualizacion(producto.getFechaActualizacion());
+    return dto;
     }
-    
+
+    // REEMPLAZAR método convertirAProducto
+
     private Producto convertirAProducto(ProductoDTO dto) {
-        Producto producto = new Producto();
-        producto.setCodigo(dto.getCodigo());
-        producto.setTipo(TipoProducto.valueOf(dto.getTipo()));
-        
-        if (dto.getTipoMaquinaria() != null && !dto.getTipoMaquinaria().isEmpty()) {
-            producto.setTipoMaquinaria(TipoMaquinaria.valueOf(dto.getTipoMaquinaria()));
-        }
-        
-        producto.setNombre(dto.getNombre());
-        producto.setDescripcion(dto.getDescripcion());
-        producto.setCategoria(dto.getCategoria());
-        producto.setUbicacion(dto.getUbicacion());
-        
-        if (dto.getEstado() != null && !dto.getEstado().isEmpty()) {
-            producto.setEstado(EstadoMaquinaria.valueOf(dto.getEstado()));
-        }
-        
-        producto.setStock(dto.getStock());
-        producto.setFechaAdquisicion(dto.getFechaAdquisicion());
-        producto.setObservaciones(dto.getObservaciones());
-        
-        return producto;
+    Producto producto = new Producto();
+    producto.setCodigo(dto.getCodigo());
+    producto.setTipo(TipoProducto.valueOf(dto.getTipo()));
+
+    if (dto.getTipoMaquinaria() != null && !dto.getTipoMaquinaria().isEmpty()) {
+        producto.setTipoMaquinaria(TipoMaquinaria.valueOf(dto.getTipoMaquinaria()));
     }
+
+    producto.setNombre(dto.getNombre());
+    producto.setDescripcion(dto.getDescripcion());
+    producto.setCategoria(dto.getCategoria());
+    producto.setUbicacion(dto.getUbicacion());
+
+    if (dto.getEstado() != null && !dto.getEstado().isEmpty()) {
+        producto.setEstado(EstadoMaquinaria.valueOf(dto.getEstado()));
+    }
+
+    producto.setStock(dto.getStock());
+
+    // Nuevos campos
+    producto.setPrecio(dto.getPrecio());
+    producto.setPrecioAlquilerDia(dto.getPrecioAlquilerDia());
+    producto.setPrecioAlquilerSemana(dto.getPrecioAlquilerSemana());
+    producto.setPrecioAlquilerMes(dto.getPrecioAlquilerMes());
+    producto.setStockMinimo(dto.getStockMinimo());
+    producto.setImagenUrl(dto.getImagenUrl());
+    producto.setDisponibleVenta(dto.getDisponibleVenta() != null ? dto.getDisponibleVenta() : true);
+
+    producto.setFechaAdquisicion(dto.getFechaAdquisicion());
+    producto.setObservaciones(dto.getObservaciones());
+
+    return producto;
+    }   
 }

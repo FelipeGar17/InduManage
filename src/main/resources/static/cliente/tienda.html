@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tienda - InduManage</title>
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="../css/admin/dashboard.css">
+    <link rel="stylesheet" href="../css/cliente/tienda.css">
+</head>
+<body>
+    <!-- Sidebar -->
+    <div class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <div class="logo-container">
+                <i class="bi bi-truck-front-fill"></i>
+                <span class="logo-text">InduManage</span>
+            </div>
+        </div>
+        
+        <div class="user-info">
+            <div class="user-avatar">
+                <i class="bi bi-person-circle"></i>
+            </div>
+            <div class="user-details">
+                <span class="user-name" id="userName">Cliente</span>
+                <span class="user-role" id="userRole">Cliente</span>
+            </div>
+        </div>
+        
+        <nav class="sidebar-nav">
+            <a href="dashboard.html" class="nav-item">
+                <i class="bi bi-house-door"></i>
+                <span>Inicio</span>
+            </a>
+            
+            <a href="tienda.html" class="nav-item active">
+                <i class="bi bi-shop"></i>
+                <span>Tienda</span>
+            </a>
+            
+            <a href="carrito.html" class="nav-item">
+                <i class="bi bi-cart"></i>
+                <span>Carrito</span>
+                <span class="badge bg-warning ms-auto" id="carritoCount">0</span>
+            </a>
+            
+            <a href="mis-ordenes.html" class="nav-item">
+                <i class="bi bi-receipt"></i>
+                <span>Mis Órdenes</span>
+            </a>
+            
+            <a href="#" class="nav-item logout-btn" id="logoutBtn">
+                <i class="bi bi-box-arrow-right"></i>
+                <span>Cerrar Sesión</span>
+            </a>
+        </nav>
+    </div>
+    
+    <!-- Main Content -->
+    <div class="main-content">
+        <!-- Navbar -->
+        <nav class="navbar">
+            <button class="sidebar-toggle" id="sidebarToggle">
+                <i class="bi bi-list"></i>
+            </button>
+            
+            <div class="navbar-title">
+                <h4><i class="bi bi-shop me-2"></i>Tienda de Productos</h4>
+            </div>
+            
+            <div class="navbar-actions">
+                <a href="carrito.html" class="btn-icon position-relative">
+                    <i class="bi bi-cart3"></i>
+                    <span class="notification-badge" id="carritoTopCount">0</span>
+                </a>
+            </div>
+        </nav>
+        
+        <!-- Content Area -->
+        <div class="content-area">
+            <!-- Filtros y búsqueda mejorados -->
+            <div class="card filters-card mb-4">
+                <div class="card-body">
+                    <div class="row g-3 align-items-end">
+                        <div class="col-md-5">
+                            <label class="form-label small text-muted mb-1">
+                                <i class="bi bi-search me-1"></i>Buscar
+                            </label>
+                            <div class="input-group">
+                                <span class="input-group-text bg-white">
+                                    <i class="bi bi-search text-muted"></i>
+                                </span>
+                                <input type="text" 
+                                       class="form-control" 
+                                       id="buscarProducto" 
+                                       placeholder="Buscar por nombre, código, categoría...">
+                            </div>
+                            <small class="text-muted">Búsqueda en nombre, código, descripción y categoría</small>
+                        </div>
+                        
+                        <div class="col-md-2">
+                            <label class="form-label small text-muted mb-1">
+                                <i class="bi bi-filter me-1"></i>Tipo
+                            </label>
+                            <select class="form-select" id="filtroTipo">
+                                <option value="">Todos</option>
+                                <option value="REPUESTO">Repuestos</option>
+                                <option value="MAQUINARIA">Maquinaria</option>
+                            </select>
+                        </div>
+                        
+                        <div class="col-md-3">
+                            <label class="form-label small text-muted mb-1">
+                                <i class="bi bi-tag me-1"></i>Categoría
+                            </label>
+                            <select class="form-select" id="filtroCategoria">
+                                <option value="">Todas</option>
+                            </select>
+                        </div>
+                        
+                        <div class="col-md-2">
+                            <button class="btn btn-outline-secondary w-100" id="btnLimpiar">
+                                <i class="bi bi-x-circle me-1"></i>Limpiar filtros
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Tabs: Repuestos / Maquinaria -->
+            <ul class="nav nav-tabs mb-4" id="tiendaTabs">
+                <li class="nav-item">
+                    <a class="nav-link active" data-bs-toggle="tab" href="#tabRepuestos">
+                        <i class="bi bi-gear-fill me-2"></i>Repuestos
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" data-bs-toggle="tab" href="#tabMaquinaria">
+                        <i class="bi bi-truck me-2"></i>Maquinaria para Alquiler
+                    </a>
+                </li>
+            </ul>
+            
+            <div class="tab-content">
+                <!-- Tab Repuestos -->
+                <div class="tab-pane fade show active" id="tabRepuestos">
+                    <div id="productosRepuestos" class="row g-4">
+                        <!-- Se llena dinámicamente -->
+                    </div>
+                    <div id="emptyRepuestos" class="empty-state d-none">
+                        <i class="bi bi-inbox"></i>
+                        <p>No se encontraron repuestos</p>
+                        <small class="text-muted">Intenta ajustar los filtros de búsqueda</small>
+                    </div>
+                </div>
+                
+                <!-- Tab Maquinaria -->
+                <div class="tab-pane fade" id="tabMaquinaria">
+                    <div id="productosMaquinaria" class="row g-4">
+                        <!-- Se llena dinámicamente -->
+                    </div>
+                    <div id="emptyMaquinaria" class="empty-state d-none">
+                        <i class="bi bi-inbox"></i>
+                        <p>No se encontró maquinaria disponible</p>
+                        <small class="text-muted">Intenta ajustar los filtros de búsqueda</small>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Modal Detalle Producto MEJORADO -->
+    <div class="modal fade" id="modalDetalle" tabindex="-1">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modalTitulo">
+                        <i class="bi bi-info-circle me-2"></i>
+                        <span></span>
+                    </h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <!-- Imagen del producto -->
+                        <div class="col-md-5 mb-3 mb-md-0">
+                            <div class="modal-product-image-container">
+                                <img id="modalImagen" 
+                                     src="" 
+                                     class="img-fluid" 
+                                     alt="Producto">
+                            </div>
+                        </div>
+                        
+                        <!-- Información del producto -->
+                        <div class="col-md-7">
+                            <div class="modal-product-info">
+                                <h4 id="modalNombre"></h4>
+                                <p class="text-muted" id="modalCodigo"></p>
+                                <hr>
+                                <p id="modalDescripcion"></p>
+                                
+                                <div id="infoPrecio" class="mb-4"></div>
+                                
+                                <!-- Sección REPUESTO -->
+                                <div id="seccionRepuesto" style="display:none;">
+                                    <div class="mb-3">
+                                        <label class="form-label fw-bold">
+                                            <i class="bi bi-hash me-1"></i>Cantidad
+                                        </label>
+                                        <input type="number" 
+                                               class="form-control form-control-lg" 
+                                               id="cantidadRepuesto" 
+                                               min="1" 
+                                               value="1">
+                                        <small class="text-muted">
+                                            <i class="bi bi-box-seam me-1"></i>
+                                            Stock disponible: <strong id="stockDisponible"></strong> unidades
+                                        </small>
+                                    </div>
+                                </div>
+                                
+                                <!-- Sección MAQUINARIA -->
+                                <div id="seccionMaquinaria" style="display:none;">
+                                    <div class="mb-3">
+                                        <label class="form-label fw-bold">
+                                            <i class="bi bi-calendar-check me-1"></i>Fecha Inicio
+                                        </label>
+                                        <input type="date" 
+                                               class="form-control form-control-lg" 
+                                               id="fechaInicio">
+                                    </div>
+                                    <div class="mb-3">
+                                        <label class="form-label fw-bold">
+                                            <i class="bi bi-calendar-x me-1"></i>Fecha Fin
+                                        </label>
+                                        <input type="date" 
+                                               class="form-control form-control-lg" 
+                                               id="fechaFin">
+                                    </div>
+                                    <div id="resumenAlquiler" 
+                                         class="alert alert-info d-flex align-items-start" 
+                                         style="display:none !important;">
+                                        <i class="bi bi-info-circle-fill me-2 fs-5"></i>
+                                        <div>
+                                            <strong>Resumen del Alquiler:</strong>
+                                            <p class="mb-1 mt-2">
+                                                <i class="bi bi-calendar3 me-1"></i>
+                                                Total de días: <strong id="diasTotal"></strong>
+                                            </p>
+                                            <p class="mb-0">
+                                                <i class="bi bi-cash-coin me-1"></i>
+                                                Total a pagar: <strong class="fs-5 text-warning" id="totalAlquiler"></strong>
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                        <i class="bi bi-x-circle me-1"></i>Cerrar
+                    </button>
+                    <button type="button" class="btn btn-warning btn-lg" id="btnAgregarCarrito">
+                        <i class="bi bi-cart-plus me-2"></i>Agregar al Carrito
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Toast Container para notificaciones -->
+    <div id="toastContainer" class="toast-container position-fixed bottom-0 end-0 p-3" style="z-index: 9999;"></div>
+    
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="../js/cliente/tienda.js"></script>
+</body>
+</html>

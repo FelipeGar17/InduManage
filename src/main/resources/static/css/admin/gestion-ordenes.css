@@ -1,0 +1,317 @@
+/* ===== Estilos para Gestión de Órdenes ===== */
+
+/* Tarjetas de Estadísticas */
+.stat-card {
+    background: white;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    transition: transform 0.2s, box-shadow 0.2s;
+    border-left: 4px solid;
+}
+
+.stat-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+.stat-pendiente {
+    border-left-color: #f59e0b;
+}
+
+.stat-revision {
+    border-left-color: #3b82f6;
+}
+
+.stat-aprobadas {
+    border-left-color: #10b981;
+}
+
+.stat-completadas {
+    border-left-color: #059669;
+}
+
+.stat-icon {
+    width: 60px;
+    height: 60px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    flex-shrink: 0;
+}
+
+.stat-pendiente .stat-icon {
+    background: #fef3c7;
+    color: #f59e0b;
+}
+
+.stat-revision .stat-icon {
+    background: #dbeafe;
+    color: #3b82f6;
+}
+
+.stat-aprobadas .stat-icon {
+    background: #d1fae5;
+    color: #10b981;
+}
+
+.stat-completadas .stat-icon {
+    background: #d1fae5;
+    color: #059669;
+}
+
+.stat-details h3 {
+    margin: 0;
+    font-size: 28px;
+    font-weight: 700;
+    color: #000;
+}
+
+.stat-details p {
+    margin: 0;
+    color: #666;
+    font-size: 14px;
+}
+
+/* ===== Badges para Estados ===== */
+.badge-pendiente {
+    background: #fef3c7;
+    color: #92400e;
+    padding: 4px 12px;
+    border-radius: 12px;
+    font-size: 12px;
+    font-weight: 600;
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.badge-en-revision {
+    background: #dbeafe;
+    color: #1e40af;
+    padding: 4px 12px;
+    border-radius: 12px;
+    font-size: 12px;
+    font-weight: 600;
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.badge-aprobada {
+    background: #d1fae5;
+    color: #065f46;
+    padding: 4px 12px;
+    border-radius: 12px;
+    font-size: 12px;
+    font-weight: 600;
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.badge-rechazada {
+    background: #fee2e2;
+    color: #991b1b;
+    padding: 4px 12px;
+    border-radius: 12px;
+    font-size: 12px;
+    font-weight: 600;
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.badge-en-proceso {
+    background: #e9d5ff;
+    color: #6b21a8;
+    padding: 4px 12px;
+    border-radius: 12px;
+    font-size: 12px;
+    font-weight: 600;
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.badge-completada {
+    background: #d1fae5;
+    color: #065f46;
+    padding: 4px 12px;
+    border-radius: 12px;
+    font-size: 12px;
+    font-weight: 600;
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.badge-cancelada {
+    background: #e5e7eb;
+    color: #374151;
+    padding: 4px 12px;
+    border-radius: 12px;
+    font-size: 12px;
+    font-weight: 600;
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+}
+
+/* ===== Badges para Tipos de Orden ===== */
+.badge-venta {
+    background: #e0e7ff;
+    color: #3730a3;
+    padding: 4px 10px;
+    border-radius: 12px;
+    font-size: 11px;
+    font-weight: 600;
+}
+
+.badge-alquiler {
+    background: #fed7aa;
+    color: #9a3412;
+    padding: 4px 10px;
+    border-radius: 12px;
+    font-size: 11px;
+    font-weight: 600;
+}
+
+.badge-mixta {
+    background: #cffafe;
+    color: #155e75;
+    padding: 4px 10px;
+    border-radius: 12px;
+    font-size: 11px;
+    font-weight: 600;
+}
+
+/* ===== Tabla ===== */
+#tablaOrdenes thead {
+    background: #f8f9fa;
+    color: #000;
+    font-weight: 600;
+    font-size: 13px;
+    text-transform: uppercase;
+}
+
+#tablaOrdenes tbody tr {
+    transition: background 0.2s;
+}
+
+#tablaOrdenes tbody tr:hover {
+    background: #f8f9fa;
+}
+
+#tablaOrdenes td {
+    vertical-align: middle;
+    padding: 12px 8px;
+    font-size: 14px;
+}
+
+/* ===== Botones de Acción ===== */
+.btn-view {
+    background: #dbeafe;
+    color: #1e40af;
+    border: none;
+    padding: 6px 12px;
+    border-radius: 6px;
+    font-size: 13px;
+    cursor: pointer;
+    transition: all 0.2s;
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.btn-view:hover {
+    background: #bfdbfe;
+    color: #1e40af;
+    transform: translateY(-1px);
+}
+
+.btn-manage {
+    background: #fed7aa;
+    color: #9a3412;
+    border: none;
+    padding: 6px 12px;
+    border-radius: 6px;
+    font-size: 13px;
+    cursor: pointer;
+    transition: all 0.2s;
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.btn-manage:hover {
+    background: #fdba74;
+    color: #9a3412;
+    transform: translateY(-1px);
+}
+
+/* ===== Items de Orden en Modal ===== */
+.item-orden {
+    background: #f8f9fa;
+    border-radius: 8px;
+    padding: 12px;
+    margin-bottom: 10px;
+    border-left: 3px solid #ff9800;
+}
+
+.item-orden-nombre {
+    font-weight: 600;
+    color: #2c3e50;
+    margin-bottom: 5px;
+}
+
+.item-orden-detalle {
+    font-size: 13px;
+    color: #666;
+}
+
+.item-orden-precio {
+    font-weight: 700;
+    color: #ff9800;
+    font-size: 16px;
+    text-align: right;
+}
+
+/* ===== Empty State ===== */
+.empty-state {
+    text-align: center;
+    padding: 60px 20px;
+    color: #999;
+}
+
+.empty-state i {
+    font-size: 64px;
+    margin-bottom: 16px;
+    opacity: 0.5;
+}
+
+.empty-state p {
+    font-size: 18px;
+    margin: 0;
+}
+
+/* ===== Responsive ===== */
+@media (max-width: 768px) {
+    .stat-card {
+        margin-bottom: 10px;
+    }
+    
+    .table-responsive {
+        font-size: 12px;
+    }
+    
+    .btn-view, .btn-manage {
+        padding: 4px 8px;
+        font-size: 11px;
+    }
+}

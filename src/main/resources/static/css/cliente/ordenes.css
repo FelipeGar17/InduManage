@@ -1,0 +1,184 @@
+/* css/cliente/ordenes.css */
+
+/* Tarjetas de estadísticas */
+.stat-card {
+    background: white;
+    border-radius: 12px;
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s;
+}
+
+.stat-card:hover {
+    transform: translateY(-3px);
+}
+
+.stat-card i {
+    font-size: 2.5rem;
+}
+
+.stat-card h3 {
+    font-size: 2rem;
+    font-weight: 700;
+    margin: 0;
+}
+
+.stat-card p {
+    margin: 0;
+    color: #6c757d;
+    font-size: 0.9rem;
+}
+
+.stat-pendiente i { color: #f39c12; }
+.stat-aprobada i { color: #27ae60; }
+.stat-proceso i { color: #3498db; }
+.stat-completada i { color: #2c3e50; }
+
+/* Tarjeta de orden */
+.orden-card {
+    background: white;
+    border-radius: 12px;
+    padding: 20px;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    transition: all 0.2s;
+    border-left: 4px solid transparent;
+}
+
+.orden-card:hover {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+}
+
+.orden-card.estado-PENDIENTE { border-left-color: #f39c12; }
+.orden-card.estado-EN_REVISION { border-left-color: #3498db; }
+.orden-card.estado-APROBADA { border-left-color: #27ae60; }
+.orden-card.estado-RECHAZADA { border-left-color: #e74c3c; }
+.orden-card.estado-EN_PROCESO { border-left-color: #9b59b6; }
+.orden-card.estado-COMPLETADA { border-left-color: #2c3e50; }
+.orden-card.estado-CANCELADA { border-left-color: #95a5a6; }
+
+.orden-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.orden-numero {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: #2c3e50;
+}
+
+.orden-badge {
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: 600;
+}
+
+.badge-PENDIENTE { background: #fff3cd; color: #856404; }
+.badge-EN_REVISION { background: #cfe2ff; color: #084298; }
+.badge-APROBADA { background: #d1e7dd; color: #0f5132; }
+.badge-RECHAZADA { background: #f8d7da; color: #842029; }
+.badge-EN_PROCESO { background: #e7d4f8; color: #4a1a6a; }
+.badge-COMPLETADA { background: #d3d3d4; color: #1f1f1f; }
+.badge-CANCELADA { background: #e2e3e5; color: #41464b; }
+
+.orden-info {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 15px;
+    margin-bottom: 15px;
+}
+
+.orden-info-item {
+    display: flex;
+    flex-direction: column;
+}
+
+.orden-info-item label {
+    font-size: 0.85rem;
+    color: #6c757d;
+    margin-bottom: 3px;
+}
+
+.orden-info-item span {
+    font-weight: 600;
+    color: #2c3e50;
+}
+
+.orden-total {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #ff9800;
+}
+
+.orden-footer {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    margin-top: 15px;
+    padding-top: 15px;
+    border-top: 1px solid #e0e0e0;
+}
+
+.btn-ver-detalle {
+    background: #3498db;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 6px;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.btn-ver-detalle:hover {
+    background: #2980b9;
+}
+
+/* Empty state */
+.empty-state {
+    text-align: center;
+    padding: 80px 20px;
+}
+
+.empty-state i {
+    font-size: 5rem;
+    color: #dee2e6;
+    margin-bottom: 20px;
+}
+
+.empty-state p {
+    font-size: 1.2rem;
+    color: #6c757d;
+    margin-bottom: 30px;
+}
+
+/* Resumen de totales en modal */
+.resumen-totales {
+    background: #f8f9fa;
+    padding: 20px;
+    border-radius: 8px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .orden-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+    }
+    
+    .orden-info {
+        grid-template-columns: 1fr;
+    }
+    
+    .stat-card {
+        margin-bottom: 15px;
+    }
+}

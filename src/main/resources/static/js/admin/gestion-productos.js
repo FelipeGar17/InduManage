@@ -5,10 +5,8 @@ let modalProducto, modalEliminar;
 
 // Inicialización
 document.addEventListener('DOMContentLoaded', function() {
-    // Verificar autenticación
     verificarAutenticacion();
     
-    // Inicializar modales
     modalProducto = new bootstrap.Modal(document.getElementById('modalProducto'));
     modalEliminar = new bootstrap.Modal(document.getElementById('modalEliminar'));
     
@@ -23,6 +21,7 @@ document.addEventListener('DOMContentLoaded', function() {
     document.getElementById('filtroTipo').addEventListener('change', filtrarProductos);
     document.getElementById('filtroCategoria').addEventListener('change', filtrarProductos);
     document.getElementById('filtroEstado').addEventListener('change', filtrarProductos);
+    document.getElementById('filtroDisponible').addEventListener('change', filtrarProductos);
     document.getElementById('filtroActivo').addEventListener('change', filtrarProductos);
     
     // Campos condicionales según tipo
@@ -50,7 +49,6 @@ function verificarAutenticacion() {
         return;
     }
     
-    // Mostrar nombre de usuario
     if (usuario.nombre) {
         document.getElementById('productosUserName').textContent = usuario.nombre;
         document.getElementById('productosUserRole').textContent = usuario.rol;
@@ -100,25 +98,52 @@ function mostrarProductos(listaProductos) {
         const inactivo = !producto.activo ? 'producto-inactivo' : '';
         const tipoBadge = producto.tipo === 'MAQUINARIA' ? 'badge-maquinaria' : 'badge-repuesto';
         
+        // Imagen del producto
+        const imagen = producto.imagenUrl 
+            ? `<img src="${producto.imagenUrl}" alt="${producto.nombre}" class="producto-imagen">`
+            : `<div class="producto-sin-imagen"><i class="bi bi-image"></i></div>`;
+        
         // Mostrar estado o stock según tipo
         let estadoStock = '';
         if (producto.tipo === 'MAQUINARIA' && producto.estado) {
             const estadoClass = `badge-${producto.estado.toLowerCase()}`;
             estadoStock = `<span class="badge ${estadoClass}">${formatearEstado(producto.estado)}</span>`;
         } else if (producto.tipo === 'REPUESTO') {
-            const stockClass = producto.stock > 0 ? 'badge-stock' : 'badge-sin-stock';
+            const stockBajo = producto.stockMinimo && producto.stock <= producto.stockMinimo;
+            const stockClass = producto.stock > 0 ? (stockBajo ? 'badge-stock-bajo' : 'badge-stock') : 'badge-sin-stock';
             estadoStock = `<span class="badge ${stockClass}">Stock: ${producto.stock || 0}</span>`;
+            if (stockBajo && producto.stock > 0) {
+                estadoStock += ` <i class="bi bi-exclamation-triangle text-warning" title="Stock bajo"></i>`;
+            }
         }
+        
+        // Mostrar precio según tipo
+        let precio = '-';
+        if (producto.tipo === 'REPUESTO' && producto.precio) {
+            precio = `$${producto.precio.toFixed(2)}`;
+        } else if (producto.tipo === 'MAQUINARIA' && producto.precioAlquilerDia) {
+            precio = `<small>Día:</small> $${producto.precioAlquilerDia.toFixed(2)}`;
+            if (producto.precioAlquilerSemana) {
+                precio += `<br><small>Sem:</small> $${producto.precioAlquilerSemana.toFixed(2)}`;
+            }
+        }
+        
+        // Badge de disponibilidad
+        const disponibleBadge = producto.disponibleVenta 
+            ? '<span class="badge badge-disponible">Disponible</span>'
+            : '<span class="badge badge-no-disponible">No disponible</span>';
         
         return `
             <tr class="${inactivo}">
+                <td>${imagen}</td>
                 <td><strong>${producto.codigo}</strong></td>
                 <td>${producto.nombre}</td>
                 <td><span class="badge ${tipoBadge}">${producto.tipo}</span></td>
                 <td>${producto.categoria || '-'}</td>
                 <td>${producto.ubicacion || '-'}</td>
                 <td>${estadoStock || '-'}</td>
-                <td>${formatearFecha(producto.fechaAdquisicion)}</td>
+                <td>${precio}</td>
+                <td>${disponibleBadge}</td>
                 <td>
                     <button class="btn btn-edit btn-sm me-1" onclick="editarProducto('${producto.id}')" title="Editar">
                         <i class="bi bi-pencil"></i>
@@ -143,6 +168,8 @@ function abrirModalNuevo() {
     document.getElementById('modalProductoTitulo').textContent = 'Nuevo Producto';
     document.getElementById('formProducto').reset();
     document.getElementById('productoId').value = '';
+    document.getElementById('productoActivo').value = 'true';
+    document.getElementById('productoDisponibleVenta').value = 'true';
     toggleCamposCondicionales();
     modalProducto.show();
 }
@@ -171,6 +198,11 @@ async function editarProducto(id) {
             document.getElementById('productoUbicacion').value = producto.ubicacion || '';
             document.getElementById('productoFechaAdquisicion').value = producto.fechaAdquisicion || '';
             document.getElementById('productoObservaciones').value = producto.observaciones || '';
+            document.getElementById('productoActivo').value = producto.activo ? 'true' : 'false';
+            
+            // Nuevos campos
+            document.getElementById('productoImagenUrl').value = producto.imagenUrl || '';
+            document.getElementById('productoDisponibleVenta').value = producto.disponibleVenta ? 'true' : 'false';
             
             // Campos condicionales
             toggleCamposCondicionales();
@@ -178,8 +210,13 @@ async function editarProducto(id) {
             if (producto.tipo === 'MAQUINARIA') {
                 document.getElementById('productoTipoMaquinaria').value = producto.tipoMaquinaria || '';
                 document.getElementById('productoEstado').value = producto.estado || '';
+                document.getElementById('productoPrecioAlquilerDia').value = producto.precioAlquilerDia || '';
+                document.getElementById('productoPrecioAlquilerSemana').value = producto.precioAlquilerSemana || '';
+                document.getElementById('productoPrecioAlquilerMes').value = producto.precioAlquilerMes || '';
             } else {
                 document.getElementById('productoStock').value = producto.stock || '';
+                document.getElementById('productoStockMinimo').value = producto.stockMinimo || '';
+                document.getElementById('productoPrecio').value = producto.precio || '';
             }
             
             modalProducto.show();
@@ -204,23 +241,37 @@ async function guardarProducto() {
         codigo: document.getElementById('productoCodigo').value,
         tipo: tipo,
         nombre: document.getElementById('productoNombre').value,
-        descripcion: document.getElementById('productoDescripcion').value,
+        descripcion: document.getElementById('productoDescripcion').value || null,
         categoria: document.getElementById('productoCategoria').value,
         ubicacion: document.getElementById('productoUbicacion').value,
         fechaAdquisicion: document.getElementById('productoFechaAdquisicion').value || null,
-        observaciones: document.getElementById('productoObservaciones').value,
-        activo: true
+        observaciones: document.getElementById('productoObservaciones').value || null,
+        activo: document.getElementById('productoActivo').value === 'true',
+        imagenUrl: document.getElementById('productoImagenUrl').value || null,
+        disponibleVenta: document.getElementById('productoDisponibleVenta').value === 'true'
     };
     
-    // Campos condicionales
+    // Campos condicionales según tipo
     if (tipo === 'MAQUINARIA') {
         producto.tipoMaquinaria = document.getElementById('productoTipoMaquinaria').value || null;
         producto.estado = document.getElementById('productoEstado').value || null;
+        producto.precioAlquilerDia = parseFloat(document.getElementById('productoPrecioAlquilerDia').value) || null;
+        producto.precioAlquilerSemana = parseFloat(document.getElementById('productoPrecioAlquilerSemana').value) || null;
+        producto.precioAlquilerMes = parseFloat(document.getElementById('productoPrecioAlquilerMes').value) || null;
+        // Null para campos de repuesto
         producto.stock = null;
+        producto.stockMinimo = null;
+        producto.precio = null;
     } else {
         producto.stock = parseInt(document.getElementById('productoStock').value) || 0;
+        producto.stockMinimo = parseInt(document.getElementById('productoStockMinimo').value) || null;
+        producto.precio = parseFloat(document.getElementById('productoPrecio').value) || null;
+        // Null para campos de maquinaria
         producto.tipoMaquinaria = null;
         producto.estado = null;
+        producto.precioAlquilerDia = null;
+        producto.precioAlquilerSemana = null;
+        producto.precioAlquilerMes = null;
     }
     
     try {
@@ -324,23 +375,36 @@ function toggleCamposCondicionales() {
     const tipo = document.getElementById('productoTipo').value;
     const grupoTipoMaquinaria = document.getElementById('grupoTipoMaquinaria');
     const grupoEstado = document.getElementById('grupoEstado');
-    const grupoStock = document.getElementById('grupoStock');
+    const grupoPreciosMaquinaria = document.getElementById('grupoPrecios Maquinaria');
+    const grupoPreciosRepuesto = document.getElementById('grupoPreciosRepuesto');
     
     if (tipo === 'MAQUINARIA') {
         grupoTipoMaquinaria.style.display = 'block';
         grupoEstado.style.display = 'block';
-        grupoStock.style.display = 'none';
+        grupoPreciosMaquinaria.style.display = 'block';
+        grupoPreciosRepuesto.style.display = 'none';
+        
+        // Limpiar campos de repuesto
         document.getElementById('productoStock').value = '';
+        document.getElementById('productoStockMinimo').value = '';
+        document.getElementById('productoPrecio').value = '';
     } else if (tipo === 'REPUESTO') {
         grupoTipoMaquinaria.style.display = 'none';
         grupoEstado.style.display = 'none';
-        grupoStock.style.display = 'block';
+        grupoPreciosMaquinaria.style.display = 'none';
+        grupoPreciosRepuesto.style.display = 'block';
+        
+        // Limpiar campos de maquinaria
         document.getElementById('productoTipoMaquinaria').value = '';
         document.getElementById('productoEstado').value = '';
+        document.getElementById('productoPrecioAlquilerDia').value = '';
+        document.getElementById('productoPrecioAlquilerSemana').value = '';
+        document.getElementById('productoPrecioAlquilerMes').value = '';
     } else {
         grupoTipoMaquinaria.style.display = 'none';
         grupoEstado.style.display = 'none';
-        grupoStock.style.display = 'none';
+        grupoPreciosMaquinaria.style.display = 'none';
+        grupoPreciosRepuesto.style.display = 'none';
     }
 }
 
@@ -367,7 +431,7 @@ async function autocompletarNombres(e) {
     }
 }
 
-// Cargar categorías para autocompletado
+// Cargar categorías
 async function cargarCategorias() {
     try {
         const token = localStorage.getItem('token');
@@ -380,11 +444,9 @@ async function cargarCategorias() {
         if (response.ok) {
             const categorias = await response.json();
             
-            // Llenar datalist
             const datalist = document.getElementById('categoriasExistentes');
             datalist.innerHTML = categorias.map(c => `<option value="${c}">`).join('');
             
-            // Llenar filtro
             const filtro = document.getElementById('filtroCategoria');
             const opcionesActuales = Array.from(filtro.options).map(o => o.value);
             categorias.forEach(cat => {
@@ -401,7 +463,7 @@ async function cargarCategorias() {
     }
 }
 
-// Cargar ubicaciones para autocompletado
+// Cargar ubicaciones
 async function cargarUbicaciones() {
     try {
         const token = localStorage.getItem('token');
@@ -427,6 +489,7 @@ function filtrarProductos() {
     const filtroTipo = document.getElementById('filtroTipo').value;
     const filtroCategoria = document.getElementById('filtroCategoria').value;
     const filtroEstado = document.getElementById('filtroEstado').value;
+    const filtroDisponible = document.getElementById('filtroDisponible').value;
     const filtroActivo = document.getElementById('filtroActivo').value;
     
     const productosFiltrados = productos.filter(producto => {
@@ -438,9 +501,10 @@ function filtrarProductos() {
         const matchTipo = !filtroTipo || producto.tipo === filtroTipo;
         const matchCategoria = !filtroCategoria || producto.categoria === filtroCategoria;
         const matchEstado = !filtroEstado || producto.estado === filtroEstado;
+        const matchDisponible = filtroDisponible === '' || producto.disponibleVenta === (filtroDisponible === 'true');
         const matchActivo = filtroActivo === '' || producto.activo === (filtroActivo === 'true');
         
-        return matchBusqueda && matchTipo && matchCategoria && matchEstado && matchActivo;
+        return matchBusqueda && matchTipo && matchCategoria && matchEstado && matchDisponible && matchActivo;
     });
     
     mostrarProductos(productosFiltrados);
