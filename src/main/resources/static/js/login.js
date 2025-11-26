@@ -1,5 +1,5 @@
 // API Base URL
-const API_URL = 'http://localhost:8080/api';
+const API_URL = 'https://indumanage-production.up.railway.app/api';
 
 // Elementos del DOM
 const loginForm = document.getElementById('loginForm');

@@ -1,5 +1,5 @@
 // Configuración
-const API_URL = 'http://localhost:8080/api';
+const API_URL = 'https://indumanage-production.up.railway.app/api';
 
 // Estado de la aplicación
 let currentSection = 'dashboard';

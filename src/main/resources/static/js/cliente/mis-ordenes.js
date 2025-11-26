@@ -1,6 +1,6 @@
 // js/cliente/mis-ordenes.js
 
-const API_URL = 'http://localhost:8080/api';
+const API_URL = 'https://indumanage-production.up.railway.app/api';
 let ordenes = [];
 let ordenSeleccionada = null;
 let modalDetalle;
