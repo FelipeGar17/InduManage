@@ -2,14 +2,17 @@
 
 <div align="center">
 
-**Sistema de Gestión Industrial Inteligente**
+**Sistema de Gestión Industrial con Tienda Online y Alquiler de Maquinaria**
 
 [![Spring Boot](https://img.shields.io/badge/Spring%20Boot-3.5.7-brightgreen.svg)](https://spring.io/projects/spring-boot)
 [![Java](https://img.shields.io/badge/Java-21-orange.svg)](https://www.oracle.com/java/)
 [![MongoDB](https://img.shields.io/badge/MongoDB-Atlas-green.svg)](https://www.mongodb.com/)
+[![Railway](https://img.shields.io/badge/Deploy-Railway-blueviolet.svg)](https://railway.app)
 [![License](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 
-[Características](#-características) • [Capturas](#-capturas-de-pantalla) • [Instalación](#-instalación) • [Sprint 3](#-sprint-3---módulo-de-clientes)
+### 🌐 [Ver Demo en Vivo](https://indumanage-production.up.railway.app/)
+
+[Características](#-características) • [Demo](#-demo) • [Tecnologías](#-stack-tecnológico) • [Uso](#-usuarios-de-prueba)
 
 </div>
 
@@ -17,141 +20,126 @@
 
 ## 📋 Descripción
 
-**InduManage** es un sistema completo de gestión industrial diseñado específicamente para facilitar el control de inventarios, maquinaria, reportes de mantenimiento y gestión de personal en entornos industriales. Con una interfaz intuitiva y profesional, permite a los trabajadores de campo y administradores gestionar eficientemente todos los aspectos operativos de la empresa.
+**InduManage** es una plataforma web completa para la gestión industrial que integra:
+- 🛒 **Tienda Online** de repuestos industriales
+- 🏗️ **Sistema de Alquiler** de maquinaria pesada (diario, semanal, mensual)
+- 📦 **Control de Inventario** inteligente
+- 🎫 **Sistema de Tickets** para reportes de mantenimiento
+- 👥 **Gestión de Usuarios** con 3 roles (Admin, Operario, Cliente)
 
-## ✨ Características
+Ideal para empresas industriales que necesitan digitalizar sus operaciones de venta, alquiler y mantenimiento de equipos.
 
-### 🔐 Sistema de Autenticación Robusto
-- **JWT (JSON Web Tokens)** con tokens de 24 horas
-- **Encriptación BCrypt** para contraseñas
-- **Control de acceso basado en roles** (ADMIN, OPERARIO, CLIENTE)
-- Rutas protegidas con Spring Security
+## 🌟 Demo
 
-### 👥 Gestión de Usuarios (Sprint 1 y 2)
-- ✅ CRUD completo de usuarios
-- ✅ Activación/desactivación de cuentas
-- ✅ Roles diferenciados con dashboards personalizados
-- ✅ Validación de usuarios activos en login
+**🔗 Aplicación en Vivo:** [https://indumanage-production.up.railway.app/](https://indumanage-production.up.railway.app/)
+
+## ✨ Características Principales
+
+### 🛒 Tienda Online de Repuestos
+- Catálogo completo con imágenes y precios
+- Carrito de compras funcional
+- Filtros por categoría y búsqueda
+- Sistema de órdenes de compra/alquiler
+- Estados: Pendiente, Aprobada, Rechazada, En Proceso, Completada
+
+### 🏗️ Sistema de Alquiler de Maquinaria
+- Tarifas diferenciadas: **día, semana, mes**
+- Disponibilidad en tiempo real
+- Gestión de alquileres activos
+- Historial completo por cliente
 
 ### 📦 Gestión de Inventario
-- ✅ Control de **Maquinaria** (Grande, Mediana, Pequeña)
-- ✅ Control de **Repuestos** con stock
-- ✅ Estados de equipos (Funcionando, Mantenimiento, Revisión, Baja)
-- ✅ **Autocompletado inteligente** para nombres, categorías y ubicaciones
-- ✅ Filtros avanzados por tipo, estado, categoría
-- ✅ Soft delete (eliminación lógica)
+- Control de **Maquinaria** (Grande, Mediana, Pequeña) y **Repuestos**
+- Stock mínimo y alertas
+- Disponibilidad para venta/alquiler
+- Estados: Funcionando, Mantenimiento, Revisión, Baja
+- Autocompletado inteligente
 
-### 🎫 Sistema de Tickets y Reportes
-- ✅ **Operarios** pueden reportar problemas en equipos
-- ✅ Tipos de reporte: Falla/Avería, Requiere Mantenimiento, Observación, Solicitud de Revisión
-- ✅ Estados: Pendiente, En Revisión, Resuelto, Cerrado
-- ✅ **Administradores** gestionan tickets, cambian estados y responden
-- ✅ Estadísticas en tiempo real por estado
-- ✅ Historial completo de tickets con respuestas
+### 🎫 Sistema de Tickets
+- Reportes de mantenimiento por operarios
+- Gestión y seguimiento por administradores
+- Estados: Pendiente → En Revisión → Resuelto → Cerrado
+- Historial completo con respuestas
 
-### 🎨 Diseño Profesional
-- **Paleta de colores industrial:** Blanco, Negro, Naranja (#ff9800)
-- **Badges de colores** para estados y tipos
-- **Interfaz responsive** con Bootstrap 5.3.0
-- **Iconos profesionales** con Bootstrap Icons 1.11.0
-- Diseñado para trabajadores industriales (interfaz clara y simple)
-
+### 🔐 Seguridad
+- Autenticación JWT (tokens 24h)
+- Encriptación BCrypt
+- 3 roles con permisos diferenciados
+- CORS configurado para producción
 ## 🖼️ Capturas de Pantalla
 
-### Login
 <div align="center">
-  <img src="docs/images/login.png" alt="Login" width="700"/>
-  <p><em>Pantalla de inicio de sesión con autenticación JWT</em></p>
+
+### 🔐 Login y Registro
+<img src="docs/images/login.png" alt="Login" width="600"/>
+
+### 👤 Dashboard Administrador
+<img src="docs/images/admin-dashboard.jpg" alt="Dashboard Admin" width="600"/>
+<p><em>Gestión completa de usuarios, productos y órdenes</em></p>
+
+### 🛒 Tienda Online (Cliente)
+<img src="docs/images/tienda.jpg" alt="Tienda" width="600"/>
+<p><em>Catálogo de repuestos con carrito y sistema de órdenes</em></p>
+
+### 🏭 Dashboard Operario
+<img src="docs/images/operario-dashboard.jpg" alt="Dashboard Operario" width="600"/>
+<p><em>Reportes de mantenimiento y gestión de tickets</em></p>
+
+</div>em>Vista de operario para reportar problemas en equipos</em></p>
 </div>
 
-### Dashboard Administrador
-<div align="center">
-  <img src="docs/images/admin-dashboard.png" alt="Dashboard Admin" width="700"/>
-  <p><em>Panel de control con estadísticas y gestión de usuarios</em></p>
-</div>
-
-### Gestión de Productos
-<div align="center">
-  <img src="docs/images/productos.png" alt="Gestión de Productos" width="700"/>
-  <p><em>CRUD completo con autocompletado y filtros avanzados</em></p>
-</div>
-
-### Gestión de Tickets
-<div align="center">
-  <img src="docs/images/tickets.png" alt="Gestión de Tickets" width="700"/>
-  <p><em>Sistema de tickets con estadísticas y gestión de reportes</em></p>
-</div>
-
-### Dashboard Operario
-<div align="center">
-  <img src="docs/images/operario-dashboard.png" alt="Dashboard Operario" width="700"/>
-  <p><em>Vista de operario para reportar problemas en equipos</em></p>
-</div>
 
 ## 🚀 Instalación
 
 ### Requisitos Previos
-- **Java 21** o superior
-- **Maven 3.8+**
-- **MongoDB Atlas** (cuenta gratuita) o MongoDB local
-- IDE recomendado: **IntelliJ IDEA** o **Eclipse** con Spring Tools
+## 👥 Usuarios de Prueba
 
-### Configuración
+Accede con estas credenciales en la [demo en vivo](https://indumanage-production.up.railway.app/):
 
-1. **Clonar el repositorio**
+| Rol | Email | Contraseña | Permisos |
+|-----|-------|------------|----------|
+| **ADMIN** | admin@indumanage.com | admin123 | Gestión completa del sistema |
+| **OPERARIO** | operario@indumanage.com | operario123 | Ver inventario y crear tickets |
+| **CLIENTE** | Crea tu cuenta | - | Tienda, carrito y alquileres |
+
+## 🚀 Instalación Local
+
+### Requisitos
+- Java 21+
+- Maven 3.8+
+- MongoDB Atlas o local
+
+### Pasos Rápidos
+
 ```bash
-git clone https://github.com/tu-usuario/indumanage.git
+# 1. Clonar repositorio
+git clone https://github.com/FelipeGar17/InduManage.git
 cd indumanage
-```
 
-2. **Configurar MongoDB**
+# 2. Configurar MongoDB (editar application.properties)
+spring.data.mongodb.uri=mongodb+srv://user:pass@cluster.mongodb.net/indumanage
 
-Edita `src/main/resources/application.properties`:
+# 3. Configurar JWT Secret (editar application.properties)
+jwt.secret=TuClaveSecretaSuperSegura
 
-```properties
-# Para MongoDB Atlas
-spring.data.mongodb.uri=mongodb+srv://usuario:password@cluster.mongodb.net/indumanage?retryWrites=true&w=majority
-
-# O para MongoDB Local
-spring.data.mongodb.host=localhost
-spring.data.mongodb.port=27017
-spring.data.mongodb.database=indumanage
-```
-
-3. **Configurar JWT Secret**
-
-Cambia la clave secreta en `application.properties`:
-
-```properties
-jwt.secret=TuClaveSecretaSuperSeguraParaProduccion
-jwt.expiration=86400000
-```
-
-4. **Compilar y ejecutar**
-
-```bash
-# Compilar el proyecto
+# 4. Compilar y ejecutar
 mvn clean install
-
-# Ejecutar la aplicación
 mvn spring-boot:run
+
+# 5. Abrir navegador
+http://localhost:8080
 ```
 
-5. **Acceder a la aplicación**
+### Despliegue en Railway
 
-Abre tu navegador en: `http://localhost:8080`
-
-### Usuario por Defecto
-
-Usuario administrador creado automáticamente:
-
-| Rol | Email | Contraseña |
-|-----|-------|------------|
-| ADMIN | admin@indumanage.com | admin123 |
-| OPERARIO | operario@indumanage.com | operario123 |
-
-## 📖 Uso
-
+1. Fork este repositorio
+2. Conecta tu cuenta de Railway con GitHub
+3. Crea nuevo proyecto desde tu repositorio
+4. Agrega variables de entorno:
+   - `MONGODB_URI`: Tu conexión MongoDB Atlas
+   - `JWT_SECRET`: Clave secreta para JWT
+   - `PORT`: Asignado automáticamente por Railway
+5. Railway construirá y desplegará automáticamente
 ### Roles y Permisos
 
 | Rol | Permisos |
@@ -163,23 +151,42 @@ Usuario administrador creado automáticamente:
 ### Flujo de Trabajo
 
 1. **Login** → El sistema redirige automáticamente según el rol
-2. **Admin Dashboard** → Gestionar usuarios, productos y tickets
-3. **Operario Dashboard** → Ver maquinaria y reportar problemas
-4. **Tickets** → El admin revisa, cambia estados y responde
-5. **Reportes** → 🚧 En desarrollo
+## 📖 Guía de Uso
 
-## 🏗️ Arquitectura
+### Flujo por Rol
 
-### Stack Tecnológico
+#### 👨‍💼 Administrador
+1. Gestionar usuarios (crear, editar, activar/desactivar)
+2. Gestionar inventario (productos, maquinaria, stock, precios)
+3. Revisar y aprobar/rechazar órdenes de clientes
+4. Responder tickets de operarios
+5. Ver estadísticas generales
 
-**Backend:**
-- Spring Boot 3.5.7
-- Spring Security con JWT
-- Spring Data MongoDB
-- Maven
+#### 👷 Operario
+1. Ver inventario de productos activos
+2. Crear tickets de mantenimiento
+3. Ver historial de sus reportes
+4. Consultar maquinaria disponible
 
-**Frontend:**
-- HTML5, CSS3, JavaScript Vanilla
+#### 🛒 Cliente
+1. Registrarse en la plataforma
+2. Explorar catálogo de repuestos y maquinaria
+3. Agregar productos al carrito
+4. Seleccionar tipo de orden (Compra/Alquiler) y período
+5. Realizar órdenes de compra/alquiler
+6. Ver historial y estado de órdenes
+
+### Flujo de Órdenes
+
+```
+Cliente crea orden → PENDIENTE
+       ↓
+Admin revisa → APROBADA o RECHAZADA
+       ↓
+Si aprobada → EN_PROCESO
+       ↓
+Entrega/Devolución → COMPLETADA
+```
 - Bootstrap 5.3.0
 - Bootstrap Icons 1.11.0
 
@@ -210,84 +217,100 @@ indumanage/
 │   │       └── application.properties
 │   └── test/
 ├── docs/
-│   ├── images/                  # Capturas de pantalla
-│   └── SPRINT3-GUIDE.md        # Guía para Sprint 3
-├── pom.xml
-└── README.md
-```
-
-## 🗂️ Modelos de Datos
-
-### Usuario
-```javascript
-{
-  nombre: String,
-  apellido: String,
-  email: String (único),
-  contrasena: String (BCrypt),
-  telefono: String,
-  rol: Enum [ADMIN, OPERARIO, CLIENTE],
-  activo: Boolean,
-  fechaCreacion: Date,
-  fechaActualizacion: Date
-}
-```
+## 🗂️ Modelos Principales
 
 ### Producto
 ```javascript
 {
-  codigo: String (único),
-  tipo: Enum [MAQUINARIA, REPUESTO],
-  tipoMaquinaria: Enum [GRANDE, MEDIANA, PEQUEÑA], // solo MAQUINARIA
+  codigo: String,
+  tipo: "MAQUINARIA" | "REPUESTO",
   nombre: String,
   descripcion: String,
   categoria: String,
-  ubicacion: String,
-  estado: Enum [FUNCIONANDO, MANTENIMIENTO, REVISION, BAJA], // solo MAQUINARIA
-  stock: Number, // solo REPUESTO
-  fechaAdquisicion: Date,
-  observaciones: String,
-  activo: Boolean,
-  fechaCreacion: Date,
-  fechaActualizacion: Date
+  
+  // Precios (nuevos en Sprint 3)
+  precio: Number,                    // Precio de venta
+  precioAlquilerDia: Number,        // Tarifa diaria
+  precioAlquilerSemana: Number,     // Tarifa semanal
+  precioAlquilerMes: Number,        // Tarifa mensual
+  
+  disponibleVenta: Boolean,
+  stock: Number,
+  stockMinimo: Number,
+  imagenUrl: String,
+  estado: "FUNCIONANDO" | "MANTENIMIENTO" | "REVISION" | "BAJA"
 }
 ```
 
-### Ticket
+### Orden (Nuevo en Sprint 3)
 ```javascript
 {
-  productoId: String,
-  productoCodigo: String,
-  productoNombre: String,
-  tipoReporte: Enum [FALLA_AVERIA, REQUIERE_MANTENIMIENTO, OBSERVACION_GENERAL, SOLICITUD_REVISION],
-  descripcion: String,
-  estado: Enum [PENDIENTE, EN_REVISION, RESUELTO, CERRADO],
-  respuestaAdmin: String,
-  operarioId: String,
-  operarioNombre: String,
-  fechaCreacion: Date,
-  fechaActualizacion: Date,
-  fechaRespuesta: Date
-}
-```
+  clienteId: String,
+  clienteNombre: String,
+  clienteEmail: String,
+  
+  items: [{
+    productoId: String,
+    nombre: String,
+    tipo: "MAQUINARIA" | "REPUESTO",
+    cantidad: Number,
+    precioUnitario: Number,
+    subtotal: Number
+  }],
+  
+  tipoOrden: "COMPRA" | "ALQUILER",
+  periodoAlquiler: "DIA" | "SEMANA" | "MES",  // solo alquiler
+  
+  estado: "PENDIENTE" | "APROBADA" | "RECHAZADA" | "EN_PROCESO" | "COMPLETADA",
+  
+  montoTotal: Number,
+  fechaInicio: Date,
+## 🛠️ Stack Tecnológico
 
-**Pendiente principal:**
-- Agregar campo de **costo de alquiler por día** en el modelo Producto
-- Crear dashboard de cliente
-- Implementar gestión de alquileres
-- Historial de equipos alquilados
+**Backend**
+- Spring Boot 3.5.7
+- Spring Security + JWT
+- Spring Data MongoDB
+- Maven
 
-## 🤝 Contribuir
+**Frontend**
+- HTML5, CSS3, JavaScript (Vanilla)
+- Bootstrap 5.3.0
+- Bootstrap Icons 1.11.0
 
-### Convenciones de Código
+**Base de Datos**
+- MongoDB Atlas (NoSQL)
 
-- **Java:** CamelCase para clases, camelCase para métodos
-- **JavaScript:** camelCase para funciones y variables
-- **CSS:** kebab-case para clases
-- **Commits:** Mensajes descriptivos en español
-  - `feat: agregar función X`
-  - `fix: corregir error en Y`
-  - `docs: actualizar documentación`
+**Despliegue**
+- Railway (Backend + Frontend)
+- GitHub (Control de versiones)
+
+## 🗺️ Roadmap
+
+### ✅ Completado
+- [x] Sprint 1: Autenticación JWT y roles
+- [x] Sprint 2: Gestión de usuarios, inventario y tickets
+- [x] Sprint 3: Tienda online y sistema de alquiler
+
+### 🚧 Próximas Mejoras
+- [ ] Sistema de pagos (Stripe/PayPal)
+- [ ] Notificaciones por email
+- [ ] Dashboard con gráficas (Chart.js)
+- [ ] Exportar reportes a PDF/Excel
+- [ ] App móvil (React Native)
+- [ ] Chat en tiempo real (WebSockets)
+
+## 📝 Licencia
+
+Distribuido bajo la Licencia MIT. Ver `LICENSE` para más información.
+
+## 📞 Contacto
+
+**Felipe García** - Desarrollador Full Stack
+
+- 📧 Email: jfelipepabong@gmail.com
+- 💼 GitHub: [@FelipeGar17](https://github.com/FelipeGar17)
+- 🌐 Demo: [indumanage-production.up.railway.app](https://indumanage-production.up.railway.app/)
 
 ## 📝 Licencia
 
